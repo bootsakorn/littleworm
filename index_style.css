@@ -24,14 +24,32 @@
 	    	padding: 0px 40px;
 	    }
 	    .hr1 {
-	    	margin: 10px auto;
+	    	margin: 20px 0;
 	    	display: block;
+				width: 70%;
+				text-align: left;
 	    }
 	    .topic {
 	    	font-size: 22px;
+				font-weight: bold;
 	    }
 	    .topic a {
 	    	font-size: 18px;
 	    	color: #238dce;
 	    	text-decoration: none;
+				font-weight: normal;
 	    }
+			.topic a:hover {
+				color: white;
+			}
+			.thumbnail {
+				background-color: #333333;
+				border-color: #333333;
+				border-radius: 0;
+				display: inline-block;
+				margin: 0px 0px 50px 30px;
+				width: 20%;
+			}
+			.caption p{
+				color: white;
+			}

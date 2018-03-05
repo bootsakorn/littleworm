@@ -18,6 +18,7 @@
     <?php
 	    include "center.php";
 	    $page = new Page();
+			$topic = array("Technology", "Education", "Financial", "Health", "Social", "Hobbies");
 	    $page->header();
 	    echo '
 	    <div class="collapse navbar-collapse" id="myNavbar">
@@ -36,27 +37,51 @@
 	      </ul>
 	    </div>
 	  </div>
-	</nav>
+	</nav>';
+	for ($j=0; $j < 6; $j++) {
+		echo '<div class="content">
+			<span class="topic"> ';
+		echo $topic[$j] . " ";
+		echo '<a href="#">&lt;read more...&gt;</a></span>
+			<hr class="hr1">
+			<div class="row">
+				<div>';
+		for ($i=0; $i < 4; $i++) {
+			echo '  <span class="thumbnail">
+					      	<img src="...">
+					      	<div class="caption">
+					        	<p>Thumbnail label</p>
+					        	<p>...</p>
+					        	<p><a href="#" class="btn btn-default" role="button">Button</a></p>
+					      	</div>
+					    </span>';
+			}
+			echo '			  	</div>
+						</div>
+					</div>';
+	}
 
+
+
+
+	?>
 	<div class="content">
 		<span class="topic"> Technology
 		<a href="#">&lt;read more...&gt;</a></span>
-		<hr>
+		<hr class="hr1">
 		<div class="row">
-			<div class="col-sm-6 col-md-4">
+			<div class="col-sm-4 col-md-3">
 			    <div class="thumbnail">
-			      	<img src="..." alt="...">
+			      	<img src="...">
 			      	<div class="caption">
-			        	<h3>Thumbnail label</h3>
+			        	<p>Thumbnail label</p>
 			        	<p>...</p>
 			        	<p><a href="#" class="btn btn-default" role="button">Button</a></p>
 			      	</div>
 			    </div>
 		  	</div>
 		</div>
-	</div>';
-	$page->footer();
-	?>
+	</div>
 
 </body>
 </html>
