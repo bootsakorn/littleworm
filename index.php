@@ -23,7 +23,7 @@
 	    echo '
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home</a></li>
+	        <li class="active"><a href="index.php">Home</a></li>
 	        <li><a href="#">Technology</a></li>
 	        <li><a href="#">Education</a></li>
 	        <li><a href="#">Financial</a></li>
@@ -32,23 +32,72 @@
 	        <li><a href="#">Hobbies</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
+	        <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
 	        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>';
+
+	echo '<center><div class="container slide">
+	  <br>
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    <ol class="carousel-indicators">
+	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      <li data-target="#myCarousel" data-slide-to="1"></li>
+	      <li data-target="#myCarousel" data-slide-to="2"></li>
+	    </ol>
+
+	    <div class="carousel-inner" role="listbox">
+
+	      <div class="item active">
+	        <img src="event.jpg" alt="Chania" height= "300px">
+	        <div class="carousel-caption">
+	          <h3>Chania</h3>
+	          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+	        </div>
+	      </div>
+
+	      <div class="item">
+	        <img src="event1.jpg" alt="Chania" height= "300px">
+	        <div class="carousel-caption">
+	          <h3>Chania</h3>
+	          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+	        </div>
+	      </div>
+
+	      <div class="item">
+	        <img src="event.jpg" alt="Flower" height= "300px">
+	        <div class="carousel-caption">
+	          <h3>Flowers</h3>
+	          <p>Beatiful flowers in Kolymbari, Crete.</p>
+	        </div>
+	      </div>
+
+	    </div>
+
+	    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+	      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	      <span class="sr-only">Previous</span>
+	    </a>
+	    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+	      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	      <span class="sr-only">Next</span>
+	    </a>
+	  </div>
+	</div></center>';
+
 	for ($j=0; $j < 6; $j++) {
-		echo '<div class="content">
+		echo '<div class="container"><div class="content">
 			<span class="topic"> ';
 		echo $topic[$j] . " ";
 		echo '<a href="#">&lt;read more...&gt;</a></span>
-			<hr class="hr1">
+			<br>
 			<div class="row">
 				<div>';
 		for ($i=0; $i < 4; $i++) {
 			echo '  <span class="thumbnail">
-					      	<img src="...">
+					      	<img src="event.jpg">
 					      	<div class="caption">
 					        	<p>Thumbnail label</p>
 					        	<p>...</p>
@@ -58,30 +107,12 @@
 			}
 			echo '			  	</div>
 						</div>
-					</div>';
-	}
-
-
-
-
+					</div></div>';
+				}
+			$page->footer();
 	?>
-	<div class="content">
-		<span class="topic"> Technology
-		<a href="#">&lt;read more...&gt;</a></span>
-		<hr class="hr1">
-		<div class="row">
-			<div class="col-sm-4 col-md-3">
-			    <div class="thumbnail">
-			      	<img src="...">
-			      	<div class="caption">
-			        	<p>Thumbnail label</p>
-			        	<p>...</p>
-			        	<p><a href="#" class="btn btn-default" role="button">Button</a></p>
-			      	</div>
-			    </div>
-		  	</div>
-		</div>
-	</div>
+
+
 
 </body>
 </html>
