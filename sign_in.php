@@ -40,13 +40,13 @@
 	</nav>';
 			// $page->footer();
 	?>
-  <center><form name="form1" method="post" action="check_login.php">
+  <center><form name="form1" method="post" action="index.php">
     Login<br>
     <table border="1" style="width: 300px">
     <tr>
-    <td> &nbsp;Username</td>
+    <td> &nbsp;Email</td>
     <td>
-    <input name="txtUsername" type="text" id="txtUsername">
+    <input name="txtEmail" type="text" id="txtEmail">
     </td>
     </tr>
     <tr>
@@ -56,37 +56,11 @@
     </tr>
     </table>
     <br>
-    <input type="submit" name="Submit" value="Login">
-  </form></center>
-  <?php
-    session_start();
-    mysql_connect("localhost","root","root");
-    mysql_select_db("littleworm");
-    $strSQL = "SELECT * FROM user WHERE email = '".mysql_real_escape_string($_POST['txtUsername'])."'
-    and Password = '".mysql_real_escape_string($_POST['txtPassword'])."'";
-    $objQuery = mysql_query($strSQL);
-    $objResult = mysql_fetch_array($objQuery);
-    if(!$objResult)
-    {
-    echo "Username and Password Incorrect!";
-    }
-    else
-    {
-    $_SESSION["UserID"] = $objResult["UserID"];
-    $_SESSION["Status"] = $objResult["Status"];
-    session_write_close();
-    if($objResult["Status"] == "ADMIN")
-    {
-    header("location:admin_page.php");
-    }
-    else
-    {
-    header("location:user_page.php");
-    }
-    }
-    mysql_close();
+    <input type="submit" name="Submit" value="Sign in">
 
-?>
+  </form></center>
+
+
 
 
 </body>
