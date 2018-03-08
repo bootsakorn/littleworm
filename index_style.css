@@ -10,7 +10,7 @@
 				background-color: #111111;
 	    }
 	    footer {
-	      background-color: #414141;
+	      background-color: #111111;
 	      color: white;
 	      padding: 25px;
 	    }
@@ -21,30 +21,38 @@
 	    	text-decoration: none;
 	    	color: white;
 	    }
+			.block_content {
+				background: linear-gradient(to bottom, #b6b6b6, #414141);
+				width: 100%;
+				margin: auto;
+				display: block;
+			}
 	    .content {
 	    	padding: 0px 50px;
 	    }
 	    .topic {
 	    	font-size: 22px;
 				font-weight: bold;
-				background-color: #333333;
+				/* background-color: #333333; */
+				background: linear-gradient(to right, #333333, #b6b6b6);
 				color: white;
 				display: block;
-				padding: 10px;
+				padding: 20px;
 	    }
 	    .topic a {
 	    	font-size: 18px;
-	    	color: #238dce;
+	    	color: #83adb5;
 	    	text-decoration: none;
 				font-weight: normal;
+				text-align: center;
 	    }
 			.topic a:hover {
-				color: white;
+				color: black;
 			}
 			.thumbnail {
-				background-color: #555555;
-				border-color: #555555;
-				border-radius: 10px;
+				background-color: #343635;
+				border-color: #343635;
+				border-width: 2px;
 				display: inline-block;
 				margin: 0px auto 50px 40px;
 				width: 20%;

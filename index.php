@@ -19,10 +19,9 @@
     <?php
 	    include "center.php";
 	    $page = new Page();
-			$topic = array("Technology", "Education", "Financial", "Health", "Social", "Hobbies");
 	    $page->header();
 		?>
-	    <div class="collapse navbar-collapse" id="myNavbar">
+	    <div class="collapse navbar-collapse ">
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a href="index.php">Home</a></li>
 	        <li><a href="#">Technology</a></li>
@@ -59,9 +58,13 @@
 		 'root',
 		 '');
 		 $arr_img = array();
+		 $arr_name = array();
+		 $arr_abstract = array();
 		 $index_img = 0;
-		 foreach($connection->query('SELECT * FROM image') as $row) {
-			 $arr_img[$index_img] = $row['img_path'];
+		 foreach($connection->query('SELECT event.id, event.name,event_image.image,event.abstract FROM `event`JOIN`event_image` WHERE event.id=event_image.event_id GROUP BY event.id ORDER BY event.date, event.time,event_image.id') as $row) {
+			 $arr_img[$index_img] = $row['image'];
+			 $arr_name[$index_img] = $row['name'];
+			 $arr_abstract[$index_img] = $row['abstract'];
 			 $index_img++;
 			 if ($index_img>3) {
 				 break;
@@ -77,24 +80,24 @@
 		      <li data-target="#myCarousel" data-slide-to="2"></li>
 					<li data-target="#myCarousel" data-slide-to="3"></li>
 		    </ol>';
-				for ($m=0; $m < 4; $m++) {
+				for ($m=0; $m < count($arr_img); $m++) {
 					if ($m == 0){
 						echo '<div class="carousel-inner" role="listbox">
 
 				      <div class="item active">
-				        <img src="'.$arr_img[$m].'" alt="Chania" height= "300px">
+				        <img src="'.$arr_img[$m].'" height= "300px">
 				        <div class="carousel-caption">
-				          <h3>Chania</h3>
-				          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+				          <h3>'.$arr_name[$m].'</h3>
+				          <p>'.$arr_abstract[$m].'</p>
 				        </div>
 				      </div>';
 
 					} else {
 						echo '<div class="item">
-			        <img src="'.$arr_img[$m].'" alt="Chania" height= "300px">
+			        <img src="'.$arr_img[$m].'" height= "300px">
 			        <div class="carousel-caption">
-			          <h3>Thai</h3>
-			          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+			          <h3>'.$arr_name[$m].'</h3>
+			          <p>'.$arr_abstract[$m].'</p>
 			        </div>
 			      </div>';
 					}
@@ -110,23 +113,26 @@
 		      <span class="sr-only">Next</span>
 		    </a>
 		  </div>
-		</div></center>';
+		</div></center>
+		<div class="block_content">';
 
-		for ($j=0; $j < 6; $j++) {
+		$topic = array("Technology", "Education", "Financial", "Health", "Social", "Hobbies");
+		include "get_event_index.php";
+		for ($j=0; $j < count($topic) ; $j++) {
 			echo '<div class="container"><div class="content">
-				<span class="topic"> ';
+				<div class="topic"> ';
 			echo $topic[$j] . " ";
-			echo '<a href="#">&lt;read more...&gt;</a></span>
+			echo '<a href="#">...read more...</a></div>
 				<br>
 				<div class="row">
 					<div>';
-			for ($i=0; $i < 4; $i++) {
+			for ($i=0; $i < count($arr_img_event[$j]); $i++) {
 				echo '  <span class="thumbnail">
-						      	<img src="event.jpg">
+						      	<img src="'.$arr_img_event[$j][$i].'">
 						      	<div class="caption">
-						        	<p>Thumbnail label</p>
-						        	<p>...</p>
-						        	<p><a href="#" class="btn btn-default" role="button">Button</a></p>
+						        	<p>'.$arr_name_event[$j][$i].'</p>
+						        	<p>'.$arr_abs_event[$j][$i].'</p>
+						        	<p><a href="#" class="btn btn-default" role="button">Join</a></p>
 						      	</div>
 						    </span>';
 				}
@@ -134,6 +140,7 @@
 							</div>
 						</div></div>';
 					}
+				echo "</div>";
 				$page->footer();
 
 			if (!empty($_POST["txtEmail"])){
