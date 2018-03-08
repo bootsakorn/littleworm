@@ -33,7 +33,6 @@
 	    .topic {
 	    	font-size: 22px;
 				font-weight: bold;
-				/* background-color: #333333; */
 				background: linear-gradient(to right, #333333, #b6b6b6);
 				color: white;
 				display: block;
@@ -43,30 +42,53 @@
 	    	font-size: 18px;
 	    	color: #83adb5;
 	    	text-decoration: none;
-				font-weight: normal;
 				text-align: center;
 	    }
 			.topic a:hover {
 				color: black;
 			}
+			.abs_event {
+				color: white;
+				font-size: 15px;
+				margin-top: 15px;
+				text-decoration: none;
+				text-indent: 20px;
+			}
+			.caption .name_event{
+				color: white;
+				margin-top: 15px;
+				font-size: 18px;
+				text-decoration: underline;
+			}
+			.btn {
+			    padding: 10px 20px;
+					font-size: 16px;
+			    background-color: #333;
+			    color: #f1f1f1;
+			    border-radius: 0;
+			    transition: .2s;
+					text-decoration: none;
+			}
+			.btn:hover, .btn:focus {
+			    border: 1px solid #333;
+			    background-color: #fff;
+			    color: #000;
+					text-decoration: none;
+			}
 			.thumbnail {
 				background-color: #343635;
-				border-color: #343635;
-				border-width: 2px;
 				display: inline-block;
 				margin: 0px auto 50px 40px;
 				width: 20%;
-			}
-			.thumbnail img {
-				border-radius: 10px;
+				padding: 0;
+				border: none;
+				border-radius: 0;
 			}
 			.dropdown-menu-item {
 				font-size: 17px;
 				margin: 10px auto;
 			}
-			.caption p{
-				color: white;
-			}
+
 			.carousel-inner {
 				max-height: 300px;
 			}

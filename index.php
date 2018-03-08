@@ -122,18 +122,22 @@
 			echo '<div class="container"><div class="content">
 				<div class="topic"> ';
 			echo $topic[$j] . " ";
-			echo '<a href="#">...read more...</a></div>
+			echo '<a href="#">...see more...</a></div>
 				<br>
 				<div class="row">
 					<div>';
 			for ($i=0; $i < count($arr_img_event[$j]); $i++) {
 				echo '  <span class="thumbnail">
-						      	<img src="'.$arr_img_event[$j][$i].'">
+						      	<a href="#"><img src="'.$arr_img_event[$j][$i].'">
 						      	<div class="caption">
-						        	<p>'.$arr_name_event[$j][$i].'</p>
-						        	<p>'.$arr_abs_event[$j][$i].'</p>
-						        	<p><a href="#" class="btn btn-default" role="button">Join</a></p>
-						      	</div>
+						        	<a class="name_event" href="#">'.$arr_name_event[$j][$i].'</a>
+						        	<p class="abs_event">'.substr($arr_abs_event[$j][$i],0,90);
+				if (strlen($arr_abs_event[$j][$i])>90){
+					echo "...";
+				}
+				echo '</p>
+						        	<p><center><a href="#" class="btn btn-default" role="button">Join</a></center></p>
+						      	</div></a>
 						    </span>';
 				}
 				echo '			  	</div>
