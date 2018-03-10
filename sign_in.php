@@ -18,7 +18,6 @@
     <?php
 	    include "center.php";
 	    $page = new Page();
-			$topic = array("Technology", "Education", "Financial", "Health", "Social", "Hobbies");
 	    $page->header();
       echo '
 	    <div class="collapse navbar-collapse" id="myNavbar">
@@ -38,7 +37,6 @@
 	    </div>
 	  </div>
 	</nav>';
-			// $page->footer();
 	?>
   <center><form name="form1" method="post" action="index.php">
     Login<br>
@@ -59,6 +57,7 @@
     <input type="submit" name="Submit" value="Sign in">
 
   </form></center>
+	<?php $page->footer(); ?>
 
 
 

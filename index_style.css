@@ -52,7 +52,7 @@
 				font-size: 15px;
 				margin-top: 15px;
 				text-decoration: none;
-				text-indent: 20px;
+				text-indent: 10px;
 			}
 			.caption .name_event{
 				color: white;
@@ -83,6 +83,10 @@
 				padding: 0;
 				border: none;
 				border-radius: 0;
+			}
+			.thumbnail > a > img {
+				width: 100%;
+				height: 150px;
 			}
 			.dropdown-menu-item {
 				font-size: 17px;

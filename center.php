@@ -1,4 +1,4 @@
-<?php 
+<?php
    	class Page{
 		function header() {
 			echo '	<div>
@@ -18,7 +18,7 @@
 
 		function footer() {
 			echo '	<footer class="container-fluid text-center">
-	  <a id="about_me" href="">About Me</a>
+	  <a id="about_me" href="">About Us</a>
 	  <p>&copy; Little Worm</p>
 	</footer>';
 		}

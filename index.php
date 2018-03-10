@@ -22,15 +22,17 @@
 	    $page->header();
 		?>
 	    <div class="collapse navbar-collapse ">
-	      <ul class="nav navbar-nav">
+				<form name="form2" method="post" action="event_page.php">
+	      <ul class="nav navbar-nav " id="type_event">
 	        <li class="active"><a href="index.php">Home</a></li>
-	        <li><a href="#">Technology</a></li>
-	        <li><a href="#">Education</a></li>
-	        <li><a href="#">Financial</a></li>
-	        <li><a href="#">Health</a></li>
-	        <li><a href="#">Social</a></li>
-	        <li><a href="#">Hobbies</a></li>
+					<li><a href="event_page.php?id=Technology">Technology</a></li>
+	        <li><a href="event_page.php?id=Education">Education</a></li>
+	        <li><a href="event_page.php?id=Financial">Financial</a></li>
+	        <li><a href="event_page.php?id=Health">Health</a></li>
+	        <li><a href="event_page.php?id=Social">Social</a></li>
+	        <li><a href="event_page.php?id=Hobbies">Hobbies</a></li>
 	      </ul>
+				</form>
 	      <ul id="login" class="nav navbar-nav navbar-right">
 	        <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
 	        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
@@ -45,7 +47,7 @@
 					    <li class="dropdown-menu-item"><a href="#">บันทึกกิจกรรม</a></li>
 					    <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
 					    <li role="separator" class="divider"></li>
-					    <li class="dropdown-menu-item"><a id="sign_out">ออกจากระบบ</a></li>
+					    <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
 					  </ul>
 					</li>
 	      </ul>
@@ -61,6 +63,7 @@
 		 $arr_name = array();
 		 $arr_abstract = array();
 		 $index_img = 0;
+		 $_SESSION["type_e"] = "";
 		 foreach($connection->query('SELECT event.id, event.name,event_image.image,event.abstract FROM `event`JOIN`event_image` WHERE event.id=event_image.event_id GROUP BY event.id ORDER BY event.date, event.time,event_image.id') as $row) {
 			 $arr_img[$index_img] = $row['image'];
 			 $arr_name[$index_img] = $row['name'];
@@ -122,7 +125,7 @@
 			echo '<div class="container"><div class="content">
 				<div class="topic"> ';
 			echo $topic[$j] . " ";
-			echo '<a href="#">...see more...</a></div>
+			echo '<a href="#">(...see more...)</a></div>
 				<br>
 				<div class="row">
 					<div>';
@@ -131,8 +134,8 @@
 						      	<a href="#"><img src="'.$arr_img_event[$j][$i].'">
 						      	<div class="caption">
 						        	<a class="name_event" href="#">'.$arr_name_event[$j][$i].'</a>
-						        	<p class="abs_event">'.substr($arr_abs_event[$j][$i],0,90);
-				if (strlen($arr_abs_event[$j][$i])>90){
+						        	<p class="abs_event">'.substr($arr_abs_event[$j][$i],0,120);
+				if (strlen($arr_abs_event[$j][$i])>120){
 					echo "...";
 				}
 				echo '</p>
@@ -176,16 +179,8 @@
 					 </script>';
 				}
 
-				echo '	<script>
-						$("#sign_out").click(function () {';
-								session_unset();
-								session_destroy();
-				echo	'$("#username").html("");
-							$("#login").show();
-							$("#profile").hide();
-						});
-					</script>';
 	?>
+
 
 
 </body>
