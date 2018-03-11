@@ -19,37 +19,34 @@
 	    include "center.php";
 	    $page = new Page();
 	    $page->header();
-      echo '
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="index.php">Home</a></li>
-	        <li><a href="#">Technology</a></li>
-	        <li><a href="#">Education</a></li>
-	        <li><a href="#">Financial</a></li>
-	        <li><a href="#">Health</a></li>
-	        <li><a href="#">Social</a></li>
-	        <li><a href="#">Hobbies</a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
-	        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>';
 	?>
-  <center><form name="form1" method="post" action="index.php">
+	<div class="collapse navbar-collapse ">
+		<form name="form2" method="post" action="event_page.php">
+		<ul class="nav navbar-nav " id="type_event">
+			<li class="active"><a href="index.php">Home</a></li>
+			<li><a href="event_page.php?type=Technology">Technology</a></li>
+			<li><a href="event_page.php?type=Education">Education</a></li>
+			<li><a href="event_page.php?type=Financial">Financial</a></li>
+			<li><a href="event_page.php?type=Health">Health</a></li>
+			<li><a href="event_page.php?type=Social">Social</a></li>
+			<li><a href="event_page.php?type=Hobbies">Hobbies</a></li>
+		</ul>
+		</form>
+	</div>
+</div>
+</nav>
+  <center><form name="form1" method="post" action="sign_in.php">
     Login<br>
     <table border="1" style="width: 300px">
     <tr>
     <td> &nbsp;Email</td>
     <td>
-    <input name="txtEmail" type="text" id="txtEmail">
+    <input name="txtEmail" type="text" id="txtEmail" required>
     </td>
     </tr>
     <tr>
     <td> &nbsp;Password</td>
-    <td><input name="txtPassword" type="password" id="txtPassword">
+    <td><input name="txtPassword" type="password" id="txtPassword" required>
     </td>
     </tr>
     </table>
@@ -57,10 +54,34 @@
     <input type="submit" name="Submit" value="Sign in">
 
   </form></center>
-	<?php $page->footer(); ?>
+	<?php
+	session_start();
+	$page->footer();
+	if (!empty($_POST["txtEmail"])){
+		$connection = new PDO(
+		 'mysql:host=localhost:3306;dbname=little_worm;charset=utf8mb4',
+		 'root',
+		 '');
+			foreach($connection->query('SELECT * FROM user') as $row) {
+				if ($row['email'] == $_POST["txtEmail"] && $row['password'] == $_POST["txtPassword"]) {
+					$_SESSION["email"] = $_POST["txtEmail"];
+					$_SESSION["position"] = $row['position'];
+					break;
+				} else {
+					$_SESSION["email"] = "";
+				}
 
+			 }
+			 if ($_SESSION["email"] == ""){
+				 echo '<script>alert("Email หรือ Password ไม่ถูกต้อง");</script>';
 
-
+			 }else {
+				 print_r($_SESSION);
+			 	 header("location: index.php");
+			 }
+			 $connection = null;
+		}
+	 ?>
 
 </body>
 </html>

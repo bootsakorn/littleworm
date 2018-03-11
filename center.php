@@ -21,8 +21,6 @@
 	  <a id="about_me" href="">About Us</a>
 	  <p>&copy; Little Worm</p>
 	</footer>';
-		}
-
 	}
-
+}
 ?>

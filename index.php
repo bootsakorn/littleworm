@@ -25,12 +25,12 @@
 				<form name="form2" method="post" action="event_page.php">
 	      <ul class="nav navbar-nav " id="type_event">
 	        <li class="active"><a href="index.php">Home</a></li>
-					<li><a href="event_page.php?id=Technology">Technology</a></li>
-	        <li><a href="event_page.php?id=Education">Education</a></li>
-	        <li><a href="event_page.php?id=Financial">Financial</a></li>
-	        <li><a href="event_page.php?id=Health">Health</a></li>
-	        <li><a href="event_page.php?id=Social">Social</a></li>
-	        <li><a href="event_page.php?id=Hobbies">Hobbies</a></li>
+					<li><a href="event_page.php?type=Technology">Technology</a></li>
+	        <li><a href="event_page.php?type=Education">Education</a></li>
+	        <li><a href="event_page.php?type=Financial">Financial</a></li>
+	        <li><a href="event_page.php?type=Health">Health</a></li>
+	        <li><a href="event_page.php?type=Social">Social</a></li>
+	        <li><a href="event_page.php?type=Hobbies">Hobbies</a></li>
 	      </ul>
 				</form>
 	      <ul id="login" class="nav navbar-nav navbar-right">
@@ -44,7 +44,10 @@
 					  </a>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					    <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
-					    <li class="dropdown-menu-item"><a href="#">บันทึกกิจกรรม</a></li>
+							<li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
+							<li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
+							<li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
+							<li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
 					    <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
 					    <li role="separator" class="divider"></li>
 					    <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
@@ -125,7 +128,7 @@
 			echo '<div class="container"><div class="content">
 				<div class="topic"> ';
 			echo $topic[$j] . " ";
-			echo '<a href="#">(...see more...)</a></div>
+			echo '<a href="event_page.php?type='.$topic[$j].'">(...see more...)</a></div>
 				<br>
 				<div class="row">
 					<div>';
@@ -134,8 +137,8 @@
 						      	<a href="#"><img src="'.$arr_img_event[$j][$i].'">
 						      	<div class="caption">
 						        	<a class="name_event" href="#">'.$arr_name_event[$j][$i].'</a>
-						        	<p class="abs_event">'.substr($arr_abs_event[$j][$i],0,120);
-				if (strlen($arr_abs_event[$j][$i])>120){
+						        	<p class="abs_event">'.substr($arr_abs_event[$j][$i],0,90);
+				if (strlen($arr_abs_event[$j][$i])>90){
 					echo "...";
 				}
 				echo '</p>
@@ -150,34 +153,47 @@
 				echo "</div>";
 				$page->footer();
 
-			if (!empty($_POST["txtEmail"])){
-				$_SESSION["email"] = $_POST["txtEmail"];
-				$_SESSION["password"] = $_POST["txtPassword"];
-				$connection = new PDO(
-				 'mysql:host=localhost:3306;dbname=little_worm;charset=utf8mb4',
-				 'root',
-				 '');
-					foreach($connection->query('SELECT * FROM user') as $row) {
-						if ($row['email'] == $_SESSION["email"] && $row['password'] == $_SESSION["password"]) {
-							$_SESSION["password"] = $row['position'];
-							if ($row['position'] == 'ADMIN'){
+				if (empty($_SESSION["email"])){
+	        echo '<script>
+	        $("#login").show();
+	        $("#profile").hide();
+	         </script>';
+					}
+
+				else {
+	          echo '<script>
+	  					$("#username").html("'.$_SESSION["email"].'");
+	  					$("#login").hide();
+	  					$("#profile").show();
+	  					</script>';
+							if ($_SESSION['position'] == 'ADMIN'){
 								echo '<script>
 									$("#username").html("'.$_SESSION["email"].'");
 									 $("#login").hide();
 									 $("#profile").show();
+									 $("#adt").hide();
+									 $("#org1").hide();
+									 $("#org2").hide();
+									 $("#adm").show();
 								 </script>';
+							} elseif ($_SESSION['position'] == 'USER') {
+								 echo '$("#username").html("'.$_SESSION["email"].'");
+								 $("#login").hide();
+								 $("#profile").show();
+								 $("#adt").show();
+								 $("#org1").hide();
+								 $("#org2").hide();
+								 $("#adm").hide();';
+							} elseif ($_SESSION['position'] == 'ORGANIZER') {
+								 echo '$("#username").html("'.$_SESSION["email"].'");
+								 $("#login").hide();
+								 $("#profile").show();
+								 $("#adt").hide();
+								 $("#org1").show();
+								 $("#org2").hide();
+								 $("#adm").hide();';
 							}
-							break;
-						}
-					 }
-					 $connection = null;
-				}
-				else {
-					echo '<script>
-					$("#login").show();
-					$("#profile").hide();
-					 </script>';
-				}
+					}
 
 	?>
 
