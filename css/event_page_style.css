@@ -1,0 +1,121 @@
+		body {
+			background-color: #b6b6b6;
+			font-family: 'Athiti', sans-serif;
+			font-size: 18px;
+		}
+	    .navbar {
+	      margin-bottom: 10px;
+	      border-radius: 0;
+	      font-weight: bold;
+				background-color: #111111;
+	    }
+	    footer {
+	      background-color: #111111;
+	      color: white;
+	      padding: 25px;
+	    }
+	    #banner {
+	    	width: 100%;
+	    }
+	    #about_me {
+	    	text-decoration: none;
+	    	color: white;
+	    }
+			.block_content {
+				background: linear-gradient(to bottom, #b6b6b6, #414141);
+				width: 100%;
+				margin: auto;
+				display: block;
+			}
+	    .content {
+	    	padding: 0px 50px;
+	    }
+	    .topic {
+	    	font-size: 22px;
+				font-weight: bold;
+				background: linear-gradient(to right, #333333, #b6b6b6);
+				color: white;
+				display: block;
+				padding: 50px 20px;
+				margin-bottom: 40px;
+				margin-top: 40px;
+	    }
+	    .topic a {
+	    	font-size: 18px;
+	    	color: #83adb5;
+	    	text-decoration: none;
+				text-align: center;
+	    }
+			.topic a:hover {
+				color: black;
+			}
+			.abs_event {
+				color: white;
+				font-size: 15px;
+				margin-top: 15px;
+				text-decoration: none;
+				text-indent: 10px;
+			}
+			.caption .name_event{
+				color: white;
+				margin-top: 15px;
+				font-size: 18px;
+				text-decoration: underline;
+			}
+			.btn {
+			    padding: 10px 20px;
+					font-size: 16px;
+			    background-color: #333;
+			    color: #f1f1f1;
+			    border-radius: 0;
+			    transition: .2s;
+					text-decoration: none;
+			}
+			.btn:hover, .btn:focus {
+			    border: 1px solid #333;
+			    background-color: #fff;
+			    color: #000;
+					text-decoration: none;
+			}
+			.thumbnail {
+				background-color: #343635;
+				display: inline-block;
+				margin: 0px auto 50px 40px;
+				width: 20%;
+				padding: 0;
+				border: none;
+				border-radius: 0;
+			}
+			.thumbnail > a > img {
+				width: 100%;
+				height: 150px;
+			}
+			.dropdown-menu-item {
+				font-size: 17px;
+				margin: 10px auto;
+			}
+			.filter ,.date {
+				padding: 2px 15px;
+				width: 200px;
+				margin: 30px 5px;
+				margin-top: 0;
+			}
+			.sub {
+					padding: 5px 15px;
+					font-size: 16px;
+					font-weight: bold;
+					background-color: white;
+					color: #111111;
+					border: 0;
+					border-radius: 0;
+					transition: .2s;
+					text-decoration: none;
+					margin: 30px 10px;
+					margin-top: 0;
+			}
+			.sub:hover, .sub:focus {
+					border: 0;
+					background-color: #111111;
+					color: white;
+					text-decoration: none;
+			}

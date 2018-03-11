@@ -1,0 +1,57 @@
+body {
+  background-color: #b6b6b6;
+  font-family: 'Athiti', sans-serif;
+  font-size: 18px;
+}
+  .navbar {
+    margin-bottom: 10px;
+    border-radius: 0;
+    font-weight: bold;
+    background-color: #111111;
+  }
+  footer {
+    background-color: #111111;
+    color: white;
+    padding: 25px;
+  }
+  #banner {
+    width: 100%;
+  }
+  #about_me {
+    text-decoration: none;
+    color: white;
+  }
+.fbody {
+  margin: 120px 20%;
+  background-color: #888888;
+  border: 2px solid #333333;
+  padding: 20px 10%;
+}
+.login {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.in {
+  font-size: 20px;
+}
+.email, .pass {
+  margin: 20px auto;
+  color: #333333;
+  font-weight: bold;
+}
+.email{
+  padding-left: 22px;
+}
+.btn {
+  border: 0;
+  border-radius: 0;
+  color: #333333;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.btn:hover {
+  color: white;
+  background-color: #333;
+}
