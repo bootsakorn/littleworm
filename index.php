@@ -35,7 +35,7 @@
 				</form>
 	      <ul id="login" class="nav navbar-nav navbar-right">
 	        <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
-	        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
+	        <li><a href="registerSelect.php"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
 	      </ul>
 				<ul id="profile" class="nav navbar-nav navbar-right">
 					<li><a id = "username"></a></li>
