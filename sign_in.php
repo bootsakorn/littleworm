@@ -63,7 +63,7 @@
 		 'root',
 		 '');
 			foreach($connection->query('SELECT * FROM user') as $row) {
-				if ($row['email'] == $_POST["txtEmail"] && $row['password'] == $_POST["txtPassword"]) {
+				if ($row['email'] == $_POST["txtEmail"] and password_verify($_POST['txtPassword'], $row['password'])) {
 					$_SESSION["email"] = $_POST["txtEmail"];
 					$_SESSION["position"] = $row['position'];
 					break;
@@ -76,8 +76,8 @@
 				 echo '<script>alert("Email หรือ Password ไม่ถูกต้อง");</script>';
 
 			 }else {
-				 print_r($_SESSION);
 			 	 header("location: index.php");
+				 
 			 }
 			 $connection = null;
 		}

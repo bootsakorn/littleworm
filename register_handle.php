@@ -106,7 +106,7 @@
              }else{
                $suc = move_uploaded_file($_FILES['profile_pic']['tmp_name'], $upload_path);
              }
-             $secret = password_hash($password, PASSWORD_BCRYPT);
+             $secret = password_hash($password, PASSWORD_DEFAULT);
              $user_data = array($email, $secret, "USER", 0);
              insert_to_db_user($user_data);
              $attendant_data = array($email, $f_name, $l_name, $phone, $b_day, $address, $upload_path);
@@ -142,7 +142,7 @@
              }else{
                $suc = move_uploaded_file($_FILES['profile_pic']['tmp_name'], $upload_path);
              }
-             $secret = password_hash($password, PASSWORD_BCRYPT);
+             $secret = password_hash($password, PASSWORD_DEFAULT);
              $user_data = array($email, $secret, "ORGANIZER", 0);
              insert_to_db_user($user_data);
              $organizer_data = array($email, $com_name, $address, $phone, $upload_path, $web);

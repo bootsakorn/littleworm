@@ -26,7 +26,6 @@
       } );
     </script>
     <title>User Register</title>
-
   </head>
   <body>
     <?php

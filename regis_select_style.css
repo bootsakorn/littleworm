@@ -1,5 +1,6 @@
 .regisBody{
   text-align: center;
+  margin: 150px;
 }
 .btn_table{
   margin: auto;
@@ -7,6 +8,9 @@
 .btn {
   margin: 20px;
   font-size: 30px;
-  background-color: #ffffff;
+  color: white;
 
+}
+.btn:hover {
+  color: black;
 }

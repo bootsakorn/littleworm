@@ -177,21 +177,23 @@
 									 $("#adm").show();
 								 </script>';
 							} elseif ($_SESSION['position'] == 'USER') {
-								 echo '$("#username").html("'.$_SESSION["email"].'");
+								 print_r($_SESSION);
+								 echo '<script>
+								 $("#username").html("'.$_SESSION["email"].'");
 								 $("#login").hide();
 								 $("#profile").show();
 								 $("#adt").show();
 								 $("#org1").hide();
 								 $("#org2").hide();
-								 $("#adm").hide();';
+								 $("#adm").hide();</script>';
 							} elseif ($_SESSION['position'] == 'ORGANIZER') {
-								 echo '$("#username").html("'.$_SESSION["email"].'");
+								 echo '<script>$("#username").html("'.$_SESSION["email"].'");
 								 $("#login").hide();
 								 $("#profile").show();
 								 $("#adt").hide();
 								 $("#org1").show();
-								 $("#org2").hide();
-								 $("#adm").hide();';
+								 $("#org2").show();
+								 $("#adm").hide();</script>';
 							}
 					}
 
