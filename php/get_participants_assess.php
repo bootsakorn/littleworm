@@ -1,11 +1,12 @@
 <?php
   // connect database
+  session_start();
   $connection = new PDO(
   'mysql:host=localhost:3306;dbname=little_worm;charset=utf8mb4',
   'root',
   '');
 
-  $event_id = '01';
+  $event_id = $_SESSION["id"];
   $row_count = 0;
   $first_name_arr = array();
   $last_name_arr = array();

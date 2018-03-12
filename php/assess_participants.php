@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
   <head>
     <title>assess participants</title>
@@ -25,12 +26,45 @@
       $page->header();
 
       $table_id = "'participants_table'";
-      $event_name = "หนอนน้อยโกโก";
+      $event_name = $_SESSION["id"];
     ?>
 
-      <!-- do not use navbar -->
-        </div>
-      </nav>
+    <div class="collapse navbar-collapse ">
+      <form name="form2" method="post" action="event_page.php">
+      <ul class="nav navbar-nav " id="type_event">
+        <li class="active"><a href="index.php">Home</a></li>
+        <li><a href="event_page.php?type=Technology">Technology</a></li>
+        <li><a href="event_page.php?type=Education">Education</a></li>
+        <li><a href="event_page.php?type=Financial">Financial</a></li>
+        <li><a href="event_page.php?type=Health">Health</a></li>
+        <li><a href="event_page.php?type=Social">Social</a></li>
+        <li><a href="event_page.php?type=Hobbies">Hobbies</a></li>
+      </ul>
+      </form>
+      <ul id="login" class="nav navbar-nav navbar-right">
+        <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
+        <li><a href="registerSelect.php"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
+      </ul>
+      <ul id="profile" class="nav navbar-nav navbar-right">
+        <li><a id = "username"></a></li>
+        <li class="dropdown">
+          <a class="glyphicon glyphicon-menu-hamburger" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
+            <li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
+            <li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
+            <li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
+            <li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
+            <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
       <div class="content">
         <div class="topics" style="text-align:center">
@@ -75,6 +109,51 @@
         </form>
       </div>
       <script> $(".hd").hide();</script>
+      <?php $page->footer();
+      if (empty($_SESSION["email"])){
+        echo '<script>
+        $("#login").show();
+        $("#profile").hide();
+         </script>';
+        }
+
+      else {
+          echo '<script>
+            $("#username").html("'.$_SESSION["email"].'");
+            $("#login").hide();
+            $("#profile").show();
+            </script>';
+            if ($_SESSION['position'] == 'ADMIN'){
+              echo '<script>
+                $("#username").html("'.$_SESSION["email"].'");
+                 $("#login").hide();
+                 $("#profile").show();
+                 $("#adt").hide();
+                 $("#org1").hide();
+                 $("#org2").hide();
+                 $("#adm").show();
+               </script>';
+            } elseif ($_SESSION['position'] == 'USER') {
+               print_r($_SESSION);
+               echo '<script>
+               $("#username").html("'.$_SESSION["email"].'");
+               $("#login").hide();
+               $("#profile").show();
+               $("#adt").show();
+               $("#org1").hide();
+               $("#org2").hide();
+               $("#adm").hide();</script>';
+            } elseif ($_SESSION['position'] == 'ORGANIZER') {
+               echo '<script>$("#username").html("'.$_SESSION["email"].'");
+               $("#login").hide();
+               $("#profile").show();
+               $("#adt").hide();
+               $("#org1").show();
+               $("#org2").show();
+               $("#adm").hide();</script>';
+            }
+        }
+      ?>
 
 
   </body>

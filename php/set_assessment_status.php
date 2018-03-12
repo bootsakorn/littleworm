@@ -5,7 +5,7 @@
     'root',
     '');
     $num = $_POST['num'];
-    $event_id = "01";
+    $event_id = $_SESSION["id"];
 
       for ($i=0; $i<$num; $i++) {
 
@@ -17,7 +17,7 @@
           $quel = 'SELECT DISTINCT attendant.email FROM attendant WHERE attendant.first_name = "'.$fname.'" AND attendant.last_name="'.$lname.'"';
           foreach ($connection->query($quel) as $row) {
             echo $row["email"];
-            $quel2 = 'UPDATE `attend_event_schedule` SET `assessment_status` = "pass"  WHERE event_id = "'.$event_id.'" AND user_email = "'.$row["email"].'"';
+            $quel2 = 'UPDATE `attend_event_schedule` SET `assessment_status` = "pass"  WHERE event_id = '.$event_id.' AND user_email = "'.$row["email"].'"';
             $connection->query($quel2);
           }
         }
@@ -26,7 +26,7 @@
             $quel = 'SELECT DISTINCT attendant.email FROM attendant WHERE attendant.first_name = "'.$fname.'" AND attendant.last_name="'.$lname.'"';
             foreach ($connection->query($quel) as $row) {
 
-              $quel2 = 'UPDATE `attend_event_schedule` SET `assessment_status` = "notPass" WHERE event_id = "'.$event_id.'" AND user_email = "'.$row["email"].'"';
+              $quel2 = 'UPDATE `attend_event_schedule` SET `assessment_status` = "notPass" WHERE event_id = '.$event_id.' AND user_email = "'.$row["email"].'"';
               $connection->query($quel2);
             }
           }

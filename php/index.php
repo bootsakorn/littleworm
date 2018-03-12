@@ -41,8 +41,8 @@
 					    <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
 							<li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
 							<li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
-							<li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
-							<li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
+							<li id="org2" class="dropdown-menu-item"><a href="createEvent.php">สร้างกิจกรรม</a></li>
+							<li id="adm" class="dropdown-menu-item"><a href="userAdmin.php">จัดการระบบ</a></li>
 					    <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
 					    <li role="separator" class="divider"></li>
 					    <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
@@ -72,50 +72,52 @@
 			 }
 			}
 		 $connection = null;
-		echo '<center><div class="container slide">
-		  <br>
-		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-		    <ol class="carousel-indicators">
-		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		      <li data-target="#myCarousel" data-slide-to="1"></li>
-		      <li data-target="#myCarousel" data-slide-to="2"></li>
-					<li data-target="#myCarousel" data-slide-to="3"></li>
-		    </ol>';
-				for ($m=0; $m < count($arr_img); $m++) {
-					if ($m == 0){
-						echo '<div class="carousel-inner" role="listbox">
+		 if(!count($arr_img) == 0) {
+			 echo '<center><div class="container slide">
+	 		  <br>
+	 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	 		    <ol class="carousel-indicators">
+	 		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	 		      <li data-target="#myCarousel" data-slide-to="1"></li>
+	 		      <li data-target="#myCarousel" data-slide-to="2"></li>
+	 					<li data-target="#myCarousel" data-slide-to="3"></li>
+	 		    </ol>';
+	 				for ($m=0; $m < count($arr_img); $m++) {
+	 					if ($m == 0){
+	 						echo '<div class="carousel-inner" role="listbox">
 
-				      <div class="item active">
-				        <img src="'.$arr_img[$m].'" height= "300px">
-				        <div class="carousel-caption">
-				          <h3>'.$arr_name[$m].'</h3>
-				          <p>'.$arr_abstract[$m].'</p>
-				        </div>
-				      </div>';
+	 				      <div class="item active">
+	 				        <img src="'.$arr_img[$m].'" height= "300px">
+	 				        <div class="carousel-caption">
+	 				          <h3>'.$arr_name[$m].'</h3>
+	 				          <p>'.$arr_abstract[$m].'</p>
+	 				        </div>
+	 				      </div>';
 
-					} else {
-						echo '<div class="item">
-			        <img src="'.$arr_img[$m].'" height= "300px">
-			        <div class="carousel-caption">
-			          <h3>'.$arr_name[$m].'</h3>
-			          <p>'.$arr_abstract[$m].'</p>
-			        </div>
-			      </div>';
-					}
-				}
-		    echo '</div>
+	 					} else {
+	 						echo '<div class="item">
+	 			        <img src="'.$arr_img[$m].'" height= "300px">
+	 			        <div class="carousel-caption">
+	 			          <h3>'.$arr_name[$m].'</h3>
+	 			          <p>'.$arr_abstract[$m].'</p>
+	 			        </div>
+	 			      </div>';
+	 					}
+	 				}
+	 		    echo '</div>
 
-		    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-		      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		      <span class="sr-only">Previous</span>
-		    </a>
-		    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-		      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		      <span class="sr-only">Next</span>
-		    </a>
-		  </div>
-		</div></center>
-		<div class="block_content">';
+	 		    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+	 		      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	 		      <span class="sr-only">Previous</span>
+	 		    </a>
+	 		    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+	 		      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	 		      <span class="sr-only">Next</span>
+	 		    </a>
+	 		  </div>
+	 		</div></center>
+	 		<div class="block_content">';
+		 }
 
 		$topic = array("Technology", "Education", "Financial", "Health", "Social", "Hobbies");
 		include "get_event_index.php";
@@ -137,7 +139,7 @@
 					echo "...";
 				}
 				echo '</p>
-						        	<p><center><a href="#" class="btn btn-default" role="button">Join</a></center></p>
+						        	<p><center><a href="before_detail.php?id='.$arr_id_event[$j][$i].'" class="btn btn-default" role="button">Read</a></center></p>
 						      	</div></a>
 						    </span>';
 				}

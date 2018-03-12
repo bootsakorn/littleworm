@@ -63,8 +63,8 @@
             <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
             <li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
             <li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
-            <li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
-            <li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
+            <li id="org2" class="dropdown-menu-item"><a href="createEvent.php">สร้างกิจกรรม</a></li>
+            <li id="adm" class="dropdown-menu-item"><a href="userAdmin.php">จัดการระบบ</a></li>
             <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
             <li role="separator" class="divider"></li>
             <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
@@ -97,7 +97,7 @@
              wrong_input_user($cause);
            }else {
              $type = strtolower(pathinfo($_FILES['profile_pic']['name'],PATHINFO_EXTENSION));
-             $image_path = "img_profile/";
+             $image_path = "../img_profile/";
              $upload_path = $image_path.uniqid().".".$type;
              if($type != "jpg" && $type != "png" && $type != "jpeg" && $type != "gif" ) {
                $cause = 'ไม่ใช่ไฟล์รูปภาพ';
@@ -133,7 +133,7 @@
              wrong_input_organizer($cause);
            }else {
              $type = strtolower(pathinfo($_FILES['profile_pic']['name'],PATHINFO_EXTENSION));
-             $image_path = "img_profile/";
+             $image_path = "../img_profile/";
              $upload_path = $image_path.uniqid().".".$type;
              if($type != "jpg" && $type != "png" && $type != "jpeg" && $type != "gif" ) {
                $cause = 'ไม่ใช่ไฟล์รูปภาพ';

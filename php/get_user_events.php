@@ -1,11 +1,11 @@
 <?php
+session_start();
   // connect database
   $connection = new PDO(
   'mysql:host=localhost:3306;dbname=little_worm;charset=utf8mb4',
   'root',
   '');
 
-  session_start();
   $email = $_SESSION["email"];
   $row_count = 0;
   $event_name_arr = array();
