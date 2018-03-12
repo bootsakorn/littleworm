@@ -1,0 +1,64 @@
+		body {
+			background-color: #b6b6b6;
+			font-family: 'Athiti', sans-serif;
+			font-size: 18px;
+		}
+			.navbar {
+				margin-bottom: 0px;
+				border-radius: 0;
+				font-weight: bold;
+				background-color: #111111;
+			}
+			footer {
+				background-color: #414141;
+				color: white;
+				padding: 25px;
+			}
+			#banner {
+				width: 100%;
+			}
+			#about_me {
+				text-decoration: none;
+				color: white;
+			}
+			.content{
+				width: 100%;
+				padding: 40px;
+				font-size: 18px;
+				background-color: #b6b6b6;
+			}
+
+
+			.tables{
+				color: white;
+				/* background-color: #414141; */
+				text-align: center;
+			}
+			.tables th{
+				 background-color: #414141;
+			}
+			.tables tbody{
+				color: #414141;
+			}
+			.dropdown{
+				margin-bottom: 10px;
+			}
+			.dropdown-menu{
+				width: 40px;
+			}
+			.btn-primary .btn{
+				margin: 30px;
+			}
+			.dropdown-toggle{
+				width: 80px;
+			}
+			.pdfBtn{
+				padding: 10px;
+				background-color: #b6b6b6
+			}
+			.scrollable-menu {
+    	height: auto;
+    	max-height: 150px;
+    	overflow-x: hidden;
+		}
+		
