@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $connection = new PDO(
     'mysql:host=localhost:3306;dbname=little_worm;charset=utf8mb4',
     'root',
@@ -33,7 +32,8 @@
         }
 
       }
-      header("location: index.php");
+    $connection = null;
+    header("location: index.php");
 ?>
 
 <!-- this isn't complete yet. it don't have real $event_id and can't send variable from assess_participants -->

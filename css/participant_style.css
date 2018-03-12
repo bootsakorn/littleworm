@@ -1,0 +1,139 @@
+body {
+  background-color: #b6b6b6;
+  font-family: 'Athiti', sans-serif;
+  font-size: 18px;
+}
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+  font-weight: bold;
+}
+footer {
+  background-color: #414141;
+  color: white;
+  padding: 25px;
+}
+#banner {
+  width: 100%;
+}
+#about_me {
+  text-decoration: none;
+  color: white;
+}
+.content {
+  padding: 0px 40px;
+}
+.hr1 {
+  margin: 20px 0;
+  display: block;
+  width: 70%;
+  text-align: left;
+}
+.topic {
+  font-size: 22px;
+  font-weight: bold;
+}
+.topic a {
+  font-size: 18px;
+  color: #238dce;
+  text-decoration: none;
+  font-weight: normal;
+}
+.topic a:hover {
+  color: white;
+}
+.caption p{
+  color: white;
+}
+#participant_div {
+  margin-bottom: 20px;
+  background-color: rgba(41, 41, 41, 0.05);
+}
+#button-div {
+  margin-bottom: 25px;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+/* Modal Content */
+.modal-content {
+  text-align: center;
+  background-color: #fefefe;
+  margin: auto;
+  width: 80%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-header {
+  padding: 2px 16px;
+  background-color: #414141;;
+  color: white;
+}
+.modal-body {padding: 2px 16px;}
+.modal-footer {
+  text-align: center;
+  padding: 2px 16px;
+  background-color: #414141;;
+  color: white;
+}
+#preconPic,
+#receiptPic {
+  width: 70%;
+  height: 70%;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+.modal-body p {
+  font-size: 25px;
+  padding-top: 20px;
+}
+.btn-container {
+  padding-bottom: 25px;
+}
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}

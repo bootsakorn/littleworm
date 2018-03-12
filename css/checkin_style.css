@@ -1,0 +1,58 @@
+body {
+  background-color: #b6b6b6;
+  font-family: 'Athiti', sans-serif;
+  font-size: 18px;
+}
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+  font-weight: bold;
+}
+footer {
+  background-color: #414141;
+  color: white;
+  padding: 25px;
+}
+#banner {
+  width: 100%;
+}
+#about_me {
+  text-decoration: none;
+  color: white;
+}
+.content {
+  padding: 0px 40px;
+}
+.hr1 {
+  margin: 20px 0;
+  display: block;
+  width: 70%;
+  text-align: left;
+}
+.topic {
+  font-size: 22px;
+  font-weight: bold;
+}
+.topic a {
+  font-size: 18px;
+  color: #238dce;
+  text-decoration: none;
+  font-weight: normal;
+}
+.topic a:hover {
+  color: white;
+}
+.caption p {
+  color: white;
+}
+.result-div {
+  width: 500px;
+  height: 160px;
+  background-color: rgba(41, 41, 41, 0.1);
+  padding-top: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.button-div {
+  margin-bottom: 20px;
+}

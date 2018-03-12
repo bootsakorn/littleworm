@@ -1,0 +1,70 @@
+body {
+  background-color: #b6b6b6;
+  font-family: 'Athiti', sans-serif;
+  font-size: 18px;
+}
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+  font-weight: bold;
+}
+footer {
+  background-color: #414141;
+  color: white;
+  padding: 25px;
+}
+form {
+  padding: 20px 20px;
+  background-color: rgba(41, 41, 41, 0.2);
+  width: 800px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.form-group {
+  text-align: center;
+}
+#banner {
+  width: 100%;
+}
+#about_me {
+  text-decoration: none;
+  color: white;
+}
+.content {
+  padding: 0px 40px;
+}
+.hr1 {
+  margin: 20px 0;
+  display: block;
+  width: 70%;
+  text-align: left;
+}
+.topic {
+  font-size: 22px;
+  font-weight: bold;
+}
+.topic a {
+  font-size: 18px;
+  color: #238dce;
+  text-decoration: none;
+  font-weight: normal;
+}
+.topic a:hover {
+  color: white;
+}
+.caption p{
+  color: white;
+}
+#result {
+  text-align: center;
+  padding: 20px 20px;
+  background-color: rgba(41, 41, 41, 0.2);
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#result a{
+  align: center;
+}
