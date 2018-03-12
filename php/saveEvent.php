@@ -30,7 +30,7 @@
 	}
 
 
-	function saveVideo($con, $lo_name){
+	function saveVideo($con){
 		$eventname = $_POST['nameEvent'];
 	    $price = $_POST['price'];
 	    $seatmax = $_POST['max'];
@@ -50,7 +50,7 @@
         $success = move_uploaded_file($_FILES['video']['tmp_name'], $upload_path);
 
           try {
-     		$sql = "INSERT INTO event(place, name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status, 	vdo) VALUES('$lo_name', '$eventname', '$date', '$seatmax', '$types', '$organitzer',
+     		$sql = "INSERT INTO event(name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status, 	vdo) VALUES('$eventname', '$date', '$seatmax', '$types', '$organitzer',
      			'$price', '$precon', '$st_time', '$en_time', '$detail', '$evaluation', 0, 'coming soon', '$upload_path')";
 			    $con->exec($sql);
 			    }catch(PDOException $e){
@@ -59,7 +59,7 @@
 
     }else{
     	try {
-     		$sql = "INSERT INTO event(place, name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status) VALUES('$lo_name', '$eventname', '$date', '$seatmax', '$types', '$organitzer',
+     		$sql = "INSERT INTO event(name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status) VALUES('$eventname', '$date', '$seatmax', '$types', '$organitzer',
      			'$price', '$precon', '$st_time', '$en_time', '$detail', '$evaluation', 0, 'coming soon')";
 			    $con->exec($sql);
 			    }catch(PDOException $e){
@@ -81,17 +81,24 @@
 			    }catch(PDOException $e){
 			    echo "Connection failed: " . $e->getMessage();
 			    }
-					return $name;
+					try {
+		     		$sql = "UPDATE `event` SET `place`=$name WHERE id= $id";
+					    $con->exec($sql);
+					    }catch(PDOException $e){
+					    echo "Connection failed: " . $e->getMessage();
+					    }
           }
+
 
 
  		include "connectDB.php";
 	 if(isset($_POST['submit'])){
 	 	$openDB = new Database();
     	$con = $openDB->connect();
+			saveVideo($con);
 		$id = saveImg($con);
-		$lo_name = saveLocation($con, $id);
-		saveVideo($con, $lo_name);
+		saveLocation($con, $id);
+
 
 		$_SESSION['id_event'] = $id;
 		$_SESSION['email'] = "noey@gmail.com";
