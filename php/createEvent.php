@@ -1,7 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php session_start();
-print_r($_SESSION); ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-874" />
@@ -63,8 +60,8 @@ print_r($_SESSION); ?>
   					    <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
   							<li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
   							<li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
-  							<li id="org2" class="dropdown-menu-item"><a href="createEvent.php">สร้างกิจกรรม</a></li>
-  							<li id="adm" class="dropdown-menu-item"><a href="userAdmin.php">จัดการระบบ</a></li>
+  							<li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
+  							<li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
   					    <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
   					    <li role="separator" class="divider"></li>
   					    <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
@@ -209,6 +206,7 @@ print_r($_SESSION); ?>
 									 $("#adm").show();
 								 </script>';
 							} elseif ($_SESSION['position'] == 'USER') {
+								 print_r($_SESSION);
 								 echo '<script>
 								 $("#username").html("'.$_SESSION["email"].'");
 								 $("#login").hide();

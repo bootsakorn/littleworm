@@ -18,7 +18,7 @@
 
 		function footer() {
 			echo '	<footer class="container-fluid text-center">
-	  <a id="about_me" href="aboutUs.php">About Us</a>
+	  <a id="about_me" href="">About Us</a>
 	  <p>&copy; Little Worm</p>
 	</footer>';
 	}

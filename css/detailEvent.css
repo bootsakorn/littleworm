@@ -1,3 +1,78 @@
+<<<<<<< HEAD
+        .item img {
+            width: auto;
+            height: 225px;
+            max-height: 225px;
+          }
+
+         .well {
+             height: auto;
+             width: 100%;
+             color: #d2bc97;
+             background-color: #352515;
+           
+         }
+
+         button {
+          border: 0;
+          border-radius: 10px;
+          background-color: #555555;
+          color:#f1f1f1;
+          padding: 30px 50px;
+          margin: 20px 10px;
+         }
+        .comment-btn {
+          border: 0;
+          border-radius: 10px;
+          background-color: #555555;
+          color:#f1f1f1;
+          padding: 10px 30px;
+          margin: 20px 10px;
+        }
+        button:hover , .comment-btn:hover {
+          background-color: #f1f1f1;
+          color: #555555;
+        }
+
+         #head{
+            font-size: 80px;
+         }
+
+          #map {
+        height: 100%;
+      }
+
+
+          #map {
+            height: 300px;
+            width: 400px;
+            text-align: center;
+          }
+
+          #submitcm{
+            background-color: #352515;
+            color: white;
+          }
+
+        .comment-detail{
+          padding-left: 15%;
+        }
+
+
+            #com{
+              background-color: #9c7f5f;
+              padding: 3px;
+              margin-left: 15%;
+               margin-right: 16%;
+               margin-bottom: 2%;
+               border-radius: 4px;
+            }
+
+        
+        
+
+      
+=======
         .item img {
             width: auto;
             height: 400px;
@@ -66,3 +141,4 @@
                margin-bottom: 2%;
                border-radius: 4px;
             }
+>>>>>>> 7cb67a5019ba1129ee731f285c852d1fcac9f0e7
