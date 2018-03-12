@@ -45,8 +45,8 @@
 					    <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
 					    <li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
 							<li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
-							<li id="org2" class="dropdown-menu-item"><a href="#">สร้างกิจกรรม</a></li>
-							<li id="adm" class="dropdown-menu-item"><a href="#">จัดการระบบ</a></li>
+							<li id="org2" class="dropdown-menu-item"><a href="createEvent.php">สร้างกิจกรรม</a></li>
+							<li id="adm" class="dropdown-menu-item"><a href="userAdmin.php">จัดการระบบ</a></li>
 					    <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
 					    <li role="separator" class="divider"></li>
 					    <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
@@ -94,7 +94,8 @@
 				if (strlen($arr_abs_event[$i])>90){
 					echo "...";
 				}
-				echo '</p><p><center><a href="#" class="btn btn-default" role="button">Join</a></center></p></div></a>
+
+				echo '</p><p><center><a href="before_detail.php?id='.$arr_id_event[$i].'" class="btn btn-default" role="button">Read</a></center></p></div></a>
 						    </span>';
 				}
 				echo '</div></div></div>';

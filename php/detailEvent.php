@@ -1,31 +1,13 @@
 <!DOCTYPE html>
  <?php
   session_start();
-  $id_event = $_SESSION['id_event'];
-  $user =  $_SESSION['email'];
-
-  function showNav(){
-       echo '
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Technology</a></li>
-          <li><a href="#">Education</a></li>
-          <li><a href="#">Financial</a></li>
-          <li><a href="#">Health</a></li>
-          <li><a href="#">Social</a></li>
-          <li><a href="#">Hobbies</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>';
-
-
-
+  if (isset($_SESSION['id'])){
+    $id_event = $_SESSION['id'];
+  }
+  if (isset($_SESSION['email'])){
+    $user =  $_SESSION['email'];
+  } else {
+    $user = "";
   }
 
 
@@ -60,7 +42,44 @@
       include "comment.php";
       $page = new Page();
       $page->header();
-      showNav();
+      ?>
+      <div class="collapse navbar-collapse ">
+        <form name="form2" method="post" action="event_page.php">
+        <ul class="nav navbar-nav " id="type_event">
+          <li class="active"><a href="index.php">Home</a></li>
+          <li><a href="event_page.php?type=Technology">Technology</a></li>
+          <li><a href="event_page.php?type=Education">Education</a></li>
+          <li><a href="event_page.php?type=Financial">Financial</a></li>
+          <li><a href="event_page.php?type=Health">Health</a></li>
+          <li><a href="event_page.php?type=Social">Social</a></li>
+          <li><a href="event_page.php?type=Hobbies">Hobbies</a></li>
+        </ul>
+        </form>
+        <ul id="login" class="nav navbar-nav navbar-right">
+          <li><a href="sign_in.php"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
+          <li><a href="registerSelect.php"><span class="glyphicon glyphicon-plus-sign"></span> Register</a></li>
+        </ul>
+        <ul id="profile" class="nav navbar-nav navbar-right">
+          <li><a id = "username"></a></li>
+          <li class="dropdown">
+            <a class="glyphicon glyphicon-menu-hamburger" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li class="dropdown-menu-item"><a href="#">ประวัติส่วนตัว</a></li>
+              <li id="adt" class="dropdown-menu-item"><a href="#">บันทึกการเข้าร่วมกิจกรรม</a></li>
+              <li id="org1" class="dropdown-menu-item"><a href="#">บันทึกการจัดกิจกรรม</a></li>
+              <li id="org2" class="dropdown-menu-item"><a href="createEvent.php">สร้างกิจกรรม</a></li>
+              <li id="adm" class="dropdown-menu-item"><a href="userAdmin.php">จัดการระบบ</a></li>
+              <li class="dropdown-menu-item"><a href="#">เปลี่ยนรหัสผ่าน</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-menu-item"><a href="sign_out.php" id="sign_out">ออกจากระบบ</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <?php
       $openDB = new Database();
       $con = $openDB->connect();
       $statement = $con->query("SELECT * FROM event WHERE id = $id_event");
@@ -96,11 +115,15 @@
           $lng = $row['place_Lng'];
         }
 
-
-        $statement = $con->query("SELECT position FROM user WHERE email = '$user'");
-        while($row = $statement->fetch(PDO::FETCH_BOTH)) {
-          $posi = $row['position'];
+        if(!$user == ""){
+          $statement = $con->query("SELECT position FROM user WHERE email = '$user'");
+          while($row = $statement->fetch(PDO::FETCH_BOTH)) {
+            $posi = $row['position'];
+          }
+        } else {
+          $posi = "";
         }
+
 
 
 
@@ -110,7 +133,9 @@
             $user = $_POST['userid'];
             $eventid = $_POST['eventid'];
             $mes = $_POST['ment'];
-
+            if ($user == ""){
+              $user = "Annonymous";
+            }
              try {
               $sql = "INSERT INTO comment(eventid, user, message) VALUES('$eventid', '$user', '$mes')";
                 $con->exec($sql);
@@ -310,6 +335,51 @@
 
 
       $page->footer();
+      if (empty($_SESSION["email"])){
+        echo '<script>
+        $("#login").show();
+        $("#profile").hide();
+         </script>';
+        }
+
+      else {
+          echo '<script>
+            $("#username").html("'.$_SESSION["email"].'");
+            $("#login").hide();
+            $("#profile").show();
+            </script>';
+            if ($_SESSION['position'] == 'ADMIN'){
+              echo '<script>
+                $("#username").html("'.$_SESSION["email"].'");
+                 $("#login").hide();
+                 $("#profile").show();
+                 $("#adt").hide();
+                 $("#org1").hide();
+                 $("#org2").hide();
+                 $("#adm").show();
+               </script>';
+            } elseif ($_SESSION['position'] == 'USER') {
+               echo '<script>$("#username").html("'.$_SESSION["email"].'");
+               $("#login").hide();
+               $("#profile").show();
+               $("#adt").show();
+               $("#org1").hide();
+               $("#org2").hide();
+               $("#adm").hide();
+               </script>';
+            } elseif ($_SESSION['position'] == 'ORGANIZER') {
+               echo '<script>$("#username").html("'.$_SESSION["email"].'");
+               $("#login").hide();
+               $("#profile").show();
+               $("#adt").hide();
+               $("#org1").show();
+               $("#org2").show();
+               $("#adm").hide();
+               </script>';
+
+            }
+
+        }
 
 
 

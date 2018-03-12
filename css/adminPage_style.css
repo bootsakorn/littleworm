@@ -1,29 +1,29 @@
-		body {
-			background-color: #b6b6b6;
-			font-family: 'Athiti', sans-serif;
-			font-size: 18px;
-		}
-			.navbar {
-				margin-bottom: 0px;
-				border-radius: 0;
-				font-weight: bold;
-				background-color: #111111;
-			}
-			footer {
-				background-color: #414141;
-				color: white;
-				padding: 25px;
-			}
-			#banner {
-				width: 100%;
-			}
-			#about_me {
-				text-decoration: none;
-				color: white;
-			}
+body {
+	background-color: #b6b6b6;
+	font-family: 'Athiti', sans-serif;
+	font-size: 18px;
+}
+	.navbar {
+		margin-bottom: 10px;
+		border-radius: 0;
+		font-weight: bold;
+		background-color: #111111;
+	}
+	footer {
+		background-color: #111111;
+		color: white;
+		padding: 25px;
+	}
+	#banner {
+		width: 100%;
+	}
+	#about_me {
+		text-decoration: none;
+		color: white;
+	}
 			.content{
 				width: 100%;
-				padding: 40px;
+				padding:0 40px;
 				font-size: 18px;
 				background-color: #b6b6b6;
 			}
@@ -61,4 +61,3 @@
     	max-height: 150px;
     	overflow-x: hidden;
 		}
-		

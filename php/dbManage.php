@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta charset="utf-8">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -24,6 +24,7 @@ $password = "";
 $dbname = "little_worm";
 
 $con = mysqli_connect($servername,$username,$password,$dbname);
+mysqli_set_charset($con, "utf8");
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }

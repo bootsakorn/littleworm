@@ -1,6 +1,5 @@
 <?php
 		session_start();
-
 	function saveImg($con){
 		 $statement = $con->query('SELECT id FROM event ORDER BY id DESC LIMIT 1');
 	while($row = $statement->fetch(PDO::FETCH_BOTH)) {
@@ -30,7 +29,7 @@
 	}
 
 
-	function saveVideo($con){
+	function saveVideo($con, $organitzer){
 		$eventname = $_POST['nameEvent'];
 	    $price = $_POST['price'];
 	    $seatmax = $_POST['max'];
@@ -41,14 +40,13 @@
 	    $detail = $_POST['detail'];
 	    $precon = $_POST['precon'];
 	    $evaluation = $_POST['googleform'];
-   		$organitzer = "noey@gmail.com";
+
 
     if(($_FILES["video"]["size"] != 0) && (strtolower(pathinfo($_FILES["video"]["name"], PATHINFO_EXTENSION)) == "mp4") ){
     	$type = strtolower(pathinfo($_FILES['video']['name'],PATHINFO_EXTENSION));
     	$vdo_path = "../vdo_event/";
         $upload_path = $vdo_path.uniqid().".".$type;
         $success = move_uploaded_file($_FILES['video']['tmp_name'], $upload_path);
-
           try {
      		$sql = "INSERT INTO event(name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status, 	vdo) VALUES('$eventname', '$date', '$seatmax', '$types', '$organitzer',
      			'$price', '$precon', '$st_time', '$en_time', '$detail', '$evaluation', 0, 'coming soon', '$upload_path')";
@@ -58,6 +56,7 @@
 			    }
 
     }else{
+			echo $organitzer;
     	try {
      		$sql = "INSERT INTO event(name, date_start, max, TYPE,   organizer_email, price, precondition, start_time, end_time, detail, evaluation, seat, status) VALUES('$eventname', '$date', '$seatmax', '$types', '$organitzer',
      			'$price', '$precon', '$st_time', '$en_time', '$detail', '$evaluation', 0, 'coming soon')";
@@ -93,15 +92,15 @@
 
  		include "connectDB.php";
 	 if(isset($_POST['submit'])){
+		 $organitzer = $_SESSION['email'];
 	 	$openDB = new Database();
     	$con = $openDB->connect();
-			saveVideo($con);
+			saveVideo($con, $organitzer);
 		$id = saveImg($con);
 		saveLocation($con, $id);
 
 
-		$_SESSION['id_event'] = $id;
-		$_SESSION['email'] = "noey@gmail.com";
+		$_SESSION['id'] = $id;
     	header('location:detailEvent.php');
 }
 

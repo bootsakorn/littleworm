@@ -56,17 +56,22 @@
         $dbname = "little_worm";
 
         $con = mysqli_connect($servername,$username,$password,$dbname);
+        mysqli_set_charset($objCon, "utf8");
         if (!$con) {
             die('Could not connect: ' . mysqli_error($con));
         }
 
         mysqli_select_db($con,"ajax_demo");
-        $sql =   "SELECT  organizer_name FROM event";
+        $sql =   "SELECT  organizer_email FROM event";
         $result = mysqli_query($con,$sql);
 
         while($row = mysqli_fetch_array($result)) {
+          $result_1 = mysqli_query($con,"SELECT DISTINCT organizer.company_name FROM `event` JOIN `organizer` WHERE organizer.email='".$row['organizer_email']."'");
+          while($row_1 = mysqli_fetch_array($result_1)) {
+            $or_name = $row_1['company_name'];
+          }
 
-            echo '<li id="fil"><a href="#">'.$row["organizer_name"].'</a></li>';
+            echo '<li id="fil"><a href="#">'.$or_name.'</a></li>';
 
         }
 
