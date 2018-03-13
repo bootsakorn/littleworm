@@ -69,9 +69,9 @@
 
         <table id='.$table_id.' style="width:65%">
           <tr>
-            <th width="53%" onclick="sortTable(0, '.$table_id.')">ชื่อกิจกรรม</th>
-            <th width="25%" onclick="sortTable(0, '.$table_id.')">วัน เวลา</th>
-            <th width="22%" onclick="sortTable(0, '.$table_id.')">สถานะ</th>
+            <th width="50%" onclick="sortTable(0, '.$table_id.')">ชื่อกิจกรรม</th>
+            <th width="30%" onclick="sortTable(0, '.$table_id.')">วัน เวลา</th>
+            <th width="20%" onclick="sortTable(0, '.$table_id.')">สถานะ</th>
           </tr>
 
           <?php
@@ -79,11 +79,18 @@
             for ($i=0; $i<count($event_name_arr); $i++) {
               echo '
               <tr>
-                <td><a href="#">' .$event_name_arr[$i]. '</a></td>
-                <td>' .$event_time_arr[$i]. 'น.</td>
-                <td>' .$event_status_arr[$i]. '</td>
-              </tr>
+                <td><a href="before_detail.php?id='.$event_id_arr[$i].'">' .$event_name_arr[$i]. '</a></td>
+                <td>' .$event_date_arr[$i]. ' ' .$event_time_arr[$i]. ' น.</td>
               ';
+                if ($event_status_arr[$i] == "no") {
+                  echo '<td>ยังไม่ได้เข้าร่วม</td>';
+                }
+                else {
+                  if ($event_status_arr[$i] == "เข้าร่วม") {
+                    echo '<td>เข้าร่วมแล้ว</td>';
+                  }
+                }
+              echo '</tr>';
             }
           ?>
         </table>

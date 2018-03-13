@@ -10,8 +10,6 @@
     $user = "";
   }
 
-
-
   ?>
 
 
@@ -104,6 +102,19 @@
           $date_time = substr($submit,8,2)."-".substr($submit,5,2)."-".substr($submit,0,4)." เวลา: ".substr($submit,11,5)." น.";
           $date = substr($date_start,8,2)."-".substr($date_start,5,2)."-".substr($date_start,0,4);
         }
+   
+        $user_join = "";
+        $paid = "";
+        $statement = $con->query("SELECT * FROM attend_event_schedule WHERE event_id = $id_event");
+        while($row = $statement->fetch(PDO::FETCH_BOTH)) {
+          if($row['user_email'] == $user){
+            $user_join = "join";
+        }
+        if( $row['assessment_status'] == "ชำระแล้ว"){
+          $paid = "paid";
+        }
+      }
+      
 
 
 
@@ -146,26 +157,24 @@
           }
 
           if(isset($_POST['cancle'])){
-
-            try {
-        $sql = "UPDATE event SET status='Event Cancle' WHERE id='$id_event'";
+            if( $paid == "paid"){
+              echo '<script> alert("ไม่สามารถ Cancle Event นี้ได้") </script>';
+            }
+            else{
+              try {
+          $sql = "UPDATE event SET status='Event Cancle' WHERE id='$id_event'";
           $con->exec($sql);
           }catch(PDOException $e){
           echo "Connection failed: " . $e->getMessage();
           }
+        }
                     }
 
 
-           if(isset($_POST['join'])){
-            $check = 1;
-             $statement = $con->query("SELECT user_email FROM attend_event_schedule WHERE user_email = '$user' AND event_id = $id_event");
-            while($row = $statement->fetch(PDO::FETCH_BOTH)) {
-              $c = $row['user_email'];
-              $check = 0;
-            }
-            if( $check == 1){
+           if(isset($_POST['join'])){ 
+            echo '<script> alert("คุณได้joinกิจกรรมนี้แล้ว") </script>';
          try {
-              $sql = "INSERT INTO attend_event_schedule(event_id, user_email, attend_status, precondition_status, receipt_status) VALUES('$id_event', '$user', 'no','no','no')";
+              $sql = "INSERT INTO attend_event_schedule(event_id, user_email, attend_status, precondition_status, receipt_status) VALUES('$id_event', '$user', 'ยังไม่สามารเข้าร่วม','no','no')";
                 $con->exec($sql);
                 }catch(PDOException $e){
                 echo "Connection failed: " . $e->getMessage();
@@ -178,7 +187,7 @@
                   }
                     header("Refresh:0; url=detailEvent.php");
                     }
-          }
+
 
 
        ?>
@@ -239,7 +248,7 @@
     </div> ';
 
   echo '<center><u><h1 id = "head"><b>'.$name.'</br></h1></u><br><br>';
-  if($posi == "ORGANIZER"){
+  if(($posi == "ORGANIZER") && ($user == $organizer_email)) {
   echo '<div>
         <form action="detailEvent.php" method="POST">
         <input type="submit" name="cancle" value="cancle event"class="comment-btn">
@@ -258,28 +267,36 @@
 
   }
 
-
   if($posi== "USER"){
+    
+    if($user_join == "" && $status != "Event Cancle"){
   echo '<div>
         <form action="detailEvent.php" method="POST">
         <input type="submit" name="join" value="เข้าร่วม"class="comment-btn">
         </form>
-
-        <form action="receipt.php" method="POST">
-        <input type="hidden" name="id_event" value="'.$id_event.'">
-        <input type="submit" name="manage" value="แจ้งโอนเงิน"class="comment-btn">
-        </form>
-
-         <form action="precon.php" method="POST">
+        </div>';
+    }else if ($user_join == "join" && $status != "Event Cancle"){
+              echo '<div><form action="precon.php" method="POST">
          <input type="hidden" name="id_event" value="'.$id_event.'">
         <input type="submit" name="evaluation" value="ส่งเอกสารเพิ่มเติม"class="comment-btn">
         </form>
+        </div>';
+          }
+    if($user_join != "" && $status != "Event Cancle" && $price != "0" && 
+      $price != "free" && $price != "Free" && $price != "FREE" && $price != "="){
+        echo '<div><form action="receipt.php" method="POST">
+        <input type="hidden" name="id_event" value="'.$id_event.'">
+        <input type="submit" name="manage" value="แจ้งโอนเงิน"class="comment-btn">
+        </form></div>';
+          }
 
 
-  </div>';
+       
+            }
 
-  }
+     
 
+  
   if($vdo != ""){
  echo "<center><video controls>
   <source src='".$vdo."' type='video/mp4'>

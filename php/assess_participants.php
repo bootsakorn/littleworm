@@ -134,7 +134,7 @@
                  $("#adm").show();
                </script>';
             } elseif ($_SESSION['position'] == 'USER') {
-              
+
                echo '<script>
                $("#username").html("'.$_SESSION["email"].'");
                $("#login").hide();

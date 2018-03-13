@@ -79,56 +79,69 @@
           <h1>User Profile</h1>
         </div>
         <div class="profileBody">
-          <div class="row form-group">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-              <img src="'.$data['profile_pic_path'].'" alt="profile" width="100%" height="100%" class="img-rounded">
+          <form class=".form-horizontal" action="edit_profile_handle.php" method="post" id="usrform" enctype="multipart/form-data">
+            <input type="hidden" name="type" value="user">
+            <input type="hidden" name="old_pic" value="'.$data['profile_pic_path'].'">
+            <div class="row form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+                <img src="'.$data['profile_pic_path'].'" alt="profile" width="100%" height="100%" class="img-rounded">
+              </div>
+              <div class="col-sm-4"></div>
             </div>
-            <div class="col-sm-4"></div>
-          </div>
-          <div class="form-group row">
-            <label for="email" class="control-label col-sm-2">Email :</label>
-            <div class="col-sm-10">
-              <input type="text" name="email" class="form-control" id="email" value="'.$data['email'].'" readonly>
+            <div class="form-group row">
+              <label for="f_name" class="control-label col-sm-3">First Name :</label>
+              <div class="col-sm-9">
+                <input type="text" name="f_name" class="form-control" id="f_name" value="'.$data['first_name'].'" required>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="f_name" class="control-label col-sm-3">First Name :</label>
-            <div class="col-sm-9">
-              <input type="text" name="f_name" class="form-control" id="f_name" value="'.$data['first_name'].'" readonly>
+            <div class="form-group row">
+              <label for="l_name" class="control-label col-sm-3">Last Name :</label>
+              <div class="col-sm-9">
+                <input type="text" name="l_name" class="form-control" id="l_name" value="'.$data['last_name'].'" required>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="l_name" class="control-label col-sm-3">Last Name :</label>
-            <div class="col-sm-9">
-              <input type="text" name="l_name" class="form-control" id="l_name" value="'.$data['last_name'].'" readonly>
+            <div class="form-group row">
+              <label for="phone" class="control-label col-sm-2">Phone :</label>
+              <div class="col-sm-10">
+                <input type="text" name="phone" class="form-control" id="phone" value="'.$data['phone'].'" required>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="phone" class="control-label col-sm-2">Phone :</label>
-            <div class="col-sm-10">
-              <input type="text" name="phone" class="form-control" id="phone" value="'.$data['phone'].'" readonly>
+            <div class="form-group row">
+              <label for="address" class="control-label col-sm-2">Address :</label>
+              <div class="col-sm-10">
+                <textarea rows="4" cols="50" name="address" form="usrform" class="form-control" id="address" required>'.$data['address'].'</textarea>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="address" class="control-label col-sm-2">Address :</label>
-            <div class="col-sm-10">
-              <textarea rows="4" cols="50" name="address" form="usrform" class="form-control" id="address" readonly>'.$data['address'].'</textarea>
+            <div class="form-group row">
+              <label for="b_day" class="control-label col-sm-2">Birth Day :</label>
+              <div class="col-sm-10">
+                <input type="date" name="b_day" class="form-control" id="b_day" value="'.$data['birth_date'].'" required>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="b_day" class="control-label col-sm-2">Birth Day :</label>
-            <div class="col-sm-10">
-              <input type="text" name="b_day" class="form-control" id="b_day" value="'.$data['birth_date'].'" readonly>
+            <div class="form-group row">
+              <label for="profile_pic" class="control-label col-sm-3">Profile Image :</label>
+              <div class="col-sm-9">
+                <input type="file" name="profile_pic" class="form-control" id="profile_pic">
+              </div>
             </div>
-          </div>
-        </div>';
-        echoButton();
+            <div class="form-group row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+                <input type="submit" value="Submit" class="form-control btn btn-default" name="submit">
+              </div>
+              <div class="col-sm-4"></div>
+            </div>
+           </form>
+         </div>';
       }else {
         echo '<div class="profileHead">
           <h1>Organizer Profile</h1>
         </div>
         <div class="profileBody">
+        <form class=".form-horizontal" action="edit_profile_handle.php" method="post" id="usrform" enctype="multipart/form-data">
+          <input type="hidden" name="type" value="organizer">
+          <input type="hidden" name="old_pic" value="'.$data['profile_pic_path'].'">
           <div class="form-group row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
@@ -137,39 +150,45 @@
             <div class="col-sm-4"></div>
           </div>
           <div class="form-group row">
-            <label for="email" class="control-label col-sm-2">Email :</label>
-            <div class="col-sm-10">
-              <input type="text" name="email" class="form-control" id="email" value="'.$data['email'].'" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
             <label for="com_name" class="control-label col-sm-3">Company Name :</label>
             <div class="col-sm-9">
-              <input type="text" name="com_name" class="form-control" id="com_name" value="'.$data['company_name'].'" readonly>
+              <input type="text" name="com_name" class="form-control" id="com_name" value="'.$data['company_name'].'" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="phone" class="control-label col-sm-2">Phone :</label>
             <div class="col-sm-10">
-              <input type="text" name="phone" class="form-control" id="phone" value="'.$data['phone'].'" readonly>
+              <input type="text" name="phone" class="form-control" id="phone" value="'.$data['phone'].'" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="address" class="control-label col-sm-2">Address :</label>
             <div class="col-sm-10">
-              <textarea rows="4" cols="50" name="address" form="usrform" class="form-control" id="address" readonly>'.$data['address'].'</textarea>
+              <textarea rows="4" cols="50" name="address" form="usrform" class="form-control" id="address" required>'.$data['address'].'</textarea>
             </div>
           </div>
           <div class="form-group row">
             <label for="web" class="control-label col-sm-2">Website :</label>
             <div class="col-sm-10">
-              <input type="text" name="web" class="form-control" id="web" value="'.$data['website'].'" readonly>
+              <input type="text" name="web" class="form-control" id="web" value="'.$data['website'].'" required>
             </div>
           </div>
+          <div class="form-group row">
+            <label for="profile_pic" class="control-label col-sm-3">Profile Image :</label>
+            <div class="col-sm-9">
+              <input type="file" name="profile_pic" class="form-control" id="profile_pic" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <input type="submit" value="Submit" class="form-control btn btn-default" name="submit">
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+        </form>
         </div>';
-        echoButton();
       }
-
 
 
     function data_query($email)
@@ -211,35 +230,11 @@
 
 
 
-
-
-
-
-
-    function echoButton()
-    {
-      echo '
-        <form class=".form-horizontal" action="edit_profile.php" method="post" id="usrform">
-            <div class="form-group row">
-              <div class="col-sm-4"></div>
-              <div class="col-sm-4">
-                <input type="submit" value="Edit" class="form-control btn btn-default">
-              </div>
-              <div class="col-sm-4"></div>
-            </div>
-          </form>
-          <form class=".form-horizontal" action="index.php" method="post" id="usrform">
-              <div class="form-group row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                  <input type="submit" value="Back Home" class="form-control btn btn-default">
-                </div>
-                <div class="col-sm-4"></div>
-              </div>
-            </form>
-      </div>';
-    }
      ?>
+
+
+
+
 
 
     <?php

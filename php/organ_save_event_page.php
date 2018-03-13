@@ -70,8 +70,8 @@
 
         <table id='.$table_id.' style="width:65%">
           <tr>
-            <th width="53%" onclick="sortTable(0, '.$table_id.')">ชื่อกิจกรรม</th>
-            <th width="25%" onclick="sortTable(1, '.$table_id.')">วัน เวลา</th>
+            <th width="48%" onclick="sortTable(0, '.$table_id.')">ชื่อกิจกรรม</th>
+            <th width="30%" onclick="sortTable(1, '.$table_id.')">วัน เวลา</th>
             <th width="22%" onclick="sortTable(2, '.$table_id.')">สถานะ</th>
           </tr>
 
@@ -83,8 +83,8 @@
           for ($i=0; $i<count($event_name_arr) ; $i++) {
             echo '
               <tr>
-                <td><a href="#">' .$event_name_arr[$i]. '</a></td>
-                <td>' .$event_date_arr[$i]. ' ' .$event_time_arr[$i]. '.</td>
+                <td><a href="before_detail.php?id='.$event_id_arr[$i].'">' .$event_name_arr[$i]. '</a></td>
+                <td>' .$event_date_arr[$i]. ' ' .$event_time_arr[$i]. ' น.</td>
             ';
 
             // check time and date for show that this event is happened.
@@ -136,7 +136,7 @@
                  $("#adm").show();
                </script>';
             } elseif ($_SESSION['position'] == 'USER') {
-              
+
                echo '<script>
                $("#username").html("'.$_SESSION["email"].'");
                $("#login").hide();

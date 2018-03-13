@@ -13,7 +13,7 @@ $connection = new PDO(
  $index_place = 0;
  $index_organizer = 0;
  $type_e = $_GET['type'];
- if (empty($_GET["place"]) && empty($_GET["company_name"]) && empty($_GET["date"])){
+ if (empty($_GET["place"]) && empty($_GET["organizer_name"]) && empty($_GET["date"])){
    $_GET["filter"] = "";
  }
  if (!empty($_GET["filter"])) {
@@ -21,7 +21,7 @@ $connection = new PDO(
    if ($filter_type == "place"){
      $filter_by = $_GET["place"];
    } else if ($filter_type == "organizer_name"){
-     foreach($connection->query('SELECT DISTINCT `email` FROM `organizer` WHERE `company_name`='.$_GET["organizer_name"]) as $row) {
+     foreach($connection->query('SELECT DISTINCT `email` FROM `organizer` WHERE `company_name`="'.$_GET["organizer_name"].'"') as $row) {
        $filter_type = "organizer_email";
        $filter_by = $row["email"];
           }
@@ -144,7 +144,7 @@ $connection = new PDO(
       $filter_place[$index_place] = $row['place'];
       $index_place++;
     }
-    foreach($connection->query('SELECT DISTINCT organizer.company_name FROM `organizer`JOIN`event` WHERE event.organizer_email=organizer.email') as $row) {
+    foreach($connection->query('SELECT DISTINCT organizer.company_name FROM `organizer`') as $row) {
        $filter_organizer[$index_organizer] = $row['company_name'];
        $index_organizer++;
      }
