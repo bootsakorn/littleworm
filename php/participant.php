@@ -59,6 +59,9 @@
   </div>
 </nav>
 <?php
+if (isset($_SESSION['id'])){
+  $id_event = $_SESSION['id'];
+}
     $servername = "localhost";
     $dbname = "little_worm";
     $userName = "root";
@@ -69,7 +72,7 @@
       $userName,
       $password);
 
-    $scheduleSelectStatement = $connection->query('SELECT * FROM attend_event_schedule');
+    $scheduleSelectStatement = $connection->query('SELECT * FROM attend_event_schedule WHERE event_id='.$id_event);
     $preconSelectStatement = $connection->query('SELECT * FROM precondition');
     $receiptSelectStatement = $connection->query('SELECT * FROM receipt');
     $qrCodeSelectStatement = $connection->query('SELECT * FROM qr_code');
@@ -319,7 +322,7 @@
                $("#adm").show();
              </script>';
           } elseif ($_SESSION['position'] == 'USER') {
-             
+
              echo '<script>
              $("#username").html("'.$_SESSION["email"].'");
              $("#login").hide();
