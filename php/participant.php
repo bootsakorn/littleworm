@@ -123,6 +123,8 @@ if (isset($_SESSION['id'])){
         QRcode::png($data, $path);
         $qrCodeInsertStatement = $connection->prepare('INSERT INTO qr_code VALUES (?, ?, ?)');
         $qrCodeInsertStatement->execute([$row['user_email'], $row['event_id'], $path]);
+        sendMail($row['user_email'],$path,$row['event_id']);
+
         $qrCodes[$data] = $path;
       }
       echo '<tr onclick="setSelectedRow(this)"><td>' . $row['id'] . '</td>' . '<td>' . $row['event_id'] . '</td>'
@@ -132,6 +134,51 @@ if (isset($_SESSION['id'])){
     }
 
     echo '</tbody></table></div>';
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    function sendMail($email,$path,$eventid)
+    {
+      require 'PHPMailer/src/Exception.php';
+      require 'PHPMailer/src/PHPMailer.php';
+      require 'PHPMailer/src/SMTP.php';
+
+
+      $mail = new PHPMailer(true);
+      try {
+          //Server settings
+          $mail->SMTPDebug = 0;
+          $mail->isSMTP();
+          $mail->SMTPOptions = array(
+              'ssl' => array(
+              'verify_peer' => false,
+              'verify_peer_name' => false,
+              'allow_self_signed' => true
+            )
+          );
+          $mail->Host = 'smtp.gmail.com';
+          $mail->SMTPAuth = true;
+          $mail->Username = 'littlewormevent@gmail.com';
+          $mail->Password = '1234worm';
+          $mail->SMTPSecure = 'ssl';
+          $mail->Port = 465;
+          $mail->IsHTML(true);
+          //Recipients
+          $mail->setFrom('littlewormevent@gmail.com', 'Little Worm');
+          $mail->addAddress($email);
+
+          $mail->addAttachment($path);
+
+          $mail->isHTML(true);
+          $mail->Subject = 'Your QR Code of ID Event'.$eventid;
+          $mail->Body    = 'QR Code ของคุณคือ';
+          $mail->send();
+      } catch (Exception $e) {
+          echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+      }
+
+    }
+
     ?>
 
     <div class="container" id="button-div">
