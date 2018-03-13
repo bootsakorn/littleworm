@@ -13,7 +13,7 @@ $connection = new PDO(
  $index_place = 0;
  $index_organizer = 0;
  $type_e = $_GET['type'];
- if (empty($_GET["place"]) and empty($_GET["company_name"]) and empty($_GET["date"])){
+ if (empty($_GET["place"]) && empty($_GET["company_name"]) && empty($_GET["date"])){
    $_GET["filter"] = "";
  }
  if (!empty($_GET["filter"])) {
@@ -24,7 +24,7 @@ $connection = new PDO(
      foreach($connection->query('SELECT DISTINCT `email` FROM `organizer` WHERE `company_name`='.$_GET["organizer_name"]) as $row) {
        $filter_type = "organizer_email";
        $filter_by = $row["email"];
-     }
+          }
    } else if ($filter_type == "date"){
      $filter_type = "date_start";
      $filter_by = $_GET["date"];
@@ -38,6 +38,7 @@ $connection = new PDO(
         $index_event++;
      }
    }
+
     if ($type_e == "Education"){
      foreach($connection->query('SELECT event.id, event.name,event_image.pathImage, event.detail FROM `event`JOIN`event_image` WHERE event.id=event_image.event_id AND event.TYPE="Education" AND event.'.$filter_type.'="'.$filter_by.'" GROUP BY event.id ORDER BY event.date_start, event.datetime_submit') as $row) {
         $arr_id_event[$index_event] = $row['id'];

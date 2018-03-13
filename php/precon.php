@@ -63,8 +63,9 @@
     <h1><center>อัพโหลดหลักฐาน Pre Condition</center></h1>
     <form action="precon_submit.php" enctype="multipart/form-data" method="post">
       <div class="form-group">
-        <label for="event">Event ID</label>
-        <input type="text" id="event" name="event" required>
+				<?php
+        echo '<input type="hidden" id="event" name="event" value="'.$_POST["id_event"].'">';
+				?>
       </div>
       <div class="form-group">
         <label for="slip">Upload Precondition</label>
@@ -101,7 +102,7 @@
 						 $("#adm").show();
 					 </script>';
 				} elseif ($_SESSION['position'] == 'USER') {
-					 
+
 					 echo '<script>
 					 $("#username").html("'.$_SESSION["email"].'");
 					 $("#login").hide();

@@ -63,8 +63,11 @@
     <h1><center>อัพโหลดหลักฐานการโอนเงิน</center></h1>
     <form action="receipt_submit.php" enctype="multipart/form-data" method="post">
       <div class="form-group">
-        <label for="event">Event ID</label>
-        <input type="text" id="event" name="event">
+				<?php
+        echo '<input type="hidden" id="event" name="event" value="'.$_POST["id_event"].'">';
+				?>
+        <!-- <label for="event">Event ID</label>
+        <input type="text" id="event" name="event"> -->
       </div>
       <div class="form-group">
         <label for="bank">ธนาคาร</label>
@@ -132,7 +135,7 @@
 						 $("#adm").show();
 					 </script>';
 				} elseif ($_SESSION['position'] == 'USER') {
-					 
+
 					 echo '<script>
 					 $("#username").html("'.$_SESSION["email"].'");
 					 $("#login").hide();

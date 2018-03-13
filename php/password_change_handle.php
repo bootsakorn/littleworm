@@ -13,28 +13,12 @@
     <link href="https://fonts.googleapis.com/css?family=Athiti&amp;subset=thai" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/index_style.css">
     <link rel="stylesheet" type="text/css" href="../css/regis_style.css">
-    <?php
-      if ($_POST['type'] == "user") {
-        echo "<title>User Register</title>";
-        echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-            <link rel="stylesheet" href="/resources/demos/style.css">
-            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-            <script>
-              $( function() {
-                // $( "#b_day" ).datepicker({ dateFormat: "yy-mm-dd" });
-                $( "#b_day" ).datepicker({ dateFormat: "dd/mm/yy" });
-              } );
-            </script>';
-      }else {
-        echo "<title>Organizer Register</title>";
-      }
-    ?>
-
+    <title="Change Password">
   </head>
   <body>
     <?php
       include "center.php";
+      session_start();
       $page = new Page();
       $page->header();
     ?>
@@ -77,9 +61,7 @@
     <?php
       include "connectDB.php";
       if(isset($_POST['submit'])){
-        // echo "user";
-        // $email = $_SESSION['email'];
-        $email = 'test1@test.com';
+        $email = $_SESSION['email'];
         $password = $_POST['password'];
         $new_password = $_POST['new_password'];
         $new_confirm_password = $_POST['new_confirm_password'];
@@ -190,21 +172,21 @@
       									 $("#adm").show();
       								 </script>';
       							} elseif ($_SESSION['position'] == 'USER') {
-      								 echo '$("#username").html("'.$_SESSION["email"].'");
+      								 echo '<script>$("#username").html("'.$_SESSION["email"].'");
       								 $("#login").hide();
       								 $("#profile").show();
       								 $("#adt").show();
       								 $("#org1").hide();
       								 $("#org2").hide();
-      								 $("#adm").hide();';
+      								 $("#adm").hide();</script>';
       							} elseif ($_SESSION['position'] == 'ORGANIZER') {
-      								 echo '$("#username").html("'.$_SESSION["email"].'");
+      								 echo '<script>$("#username").html("'.$_SESSION["email"].'");
       								 $("#login").hide();
       								 $("#profile").show();
       								 $("#adt").hide();
       								 $("#org1").show();
       								 $("#org2").hide();
-      								 $("#adm").hide();';
+      								 $("#adm").hide();</script>';
       							}
       					}
     ?>

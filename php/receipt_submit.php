@@ -69,7 +69,7 @@
       <h1><center>อัพโหลดหลักฐานการโอนเงิน</center></h1>
       <div class="container" id="result">
         <p>อัพโหลดไม่สำเร็จ</p>
-        <a href="receipt.php" class="btn btn-info" role="button">ย้อนกลับ</a>
+        <a href="index.php" class="btn btn-info" role="button">Back Home</a>
       </div>';
       $page->footer();
       exit();
@@ -79,7 +79,7 @@
       <h1><center>อัพโหลดหลักฐานการโอนเงิน</center></h1>
       <div class="container" id="result">
         <p>อัพโหลดสำเร็จ</p>
-        <a href="receipt.php" class="btn btn-info" role="button">ย้อนกลับ</a>
+        <a href="index.php" class="btn btn-info" role="button">Back Home</a>
       </div>';
     }
 
@@ -95,7 +95,6 @@
 
     $statement = $connection->prepare('INSERT INTO receipt VALUES (?, ?, ?, ?, ?, ?)');
     $param = array($_POST['event'], $upload_path, $_POST['bank'], $_POST['balance'], $_POST['date'], $_POST['time']);
-
     $statement->execute($param);
     ?>
 
@@ -124,7 +123,7 @@
                $("#adm").show();
              </script>';
           } elseif ($_SESSION['position'] == 'USER') {
-             
+
              echo '<script>
              $("#username").html("'.$_SESSION["email"].'");
              $("#login").hide();

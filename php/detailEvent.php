@@ -102,7 +102,7 @@
           $seat = $row['seat'];
           $status = $row['status'];
           $date_time = substr($submit,8,2)."-".substr($submit,5,2)."-".substr($submit,0,4)." เวลา: ".substr($submit,11,5)." น.";
-          $date = substr($submit,8,2)."-".substr($submit,5,2)."-".substr($submit,0,4);
+          $date = substr($date_start,8,2)."-".substr($date_start,5,2)."-".substr($date_start,0,4);
         }
 
 
@@ -158,7 +158,7 @@
 
            if(isset($_POST['join'])){
             $check = 1;
-             $statement = $con->query("SELECT user_email FROM attend_event_schedule WHERE user_email = '$user'");
+             $statement = $con->query("SELECT user_email FROM attend_event_schedule WHERE user_email = '$user' AND event_id = $id_event");
             while($row = $statement->fetch(PDO::FETCH_BOTH)) {
               $c = $row['user_email'];
               $check = 0;
@@ -266,10 +266,12 @@
         </form>
 
         <form action="receipt.php" method="POST">
+        <input type="hidden" name="id_event" value="'.$id_event.'">
         <input type="submit" name="manage" value="แจ้งโอนเงิน"class="comment-btn">
         </form>
 
          <form action="precon.php" method="POST">
+         <input type="hidden" name="id_event" value="'.$id_event.'">
         <input type="submit" name="evaluation" value="ส่งเอกสารเพิ่มเติม"class="comment-btn">
         </form>
 

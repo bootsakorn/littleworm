@@ -16,7 +16,7 @@
   $event_name = $row['name'];
 
 
-  foreach ($connection->query('SELECT first_name, last_name FROM attendant WHERE email IN (SELECT user_email FROM attend_event_schedule WHERE event_id = ' .$event_id. ')') as $row) {
+  foreach ($connection->query('SELECT first_name, last_name FROM attendant WHERE email IN (SELECT user_email FROM attend_event_schedule WHERE event_id = "' .$event_id. '")') as $row) {
     $first_name_arr[$row_count] = $row['first_name'];
     $last_name_arr[$row_count] = $row['last_name'];
 

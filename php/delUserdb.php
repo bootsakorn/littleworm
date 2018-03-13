@@ -32,10 +32,15 @@ if (!$con) {
 mysqli_select_db($con,"ajax_demo");
 if($t == "user"){
   $sql = "DELETE FROM user WHERE email ='$q'";
-
+  mysqli_query($con,$sql);
 }else if($t == "event"){
-  echo "string";
-  $sql = "DELETE FROM event WHERE id = $q";
+  $sql2 = "DELETE FROM event_image WHERE event_id = $q";
+  $sql3 = "DELETE FROM googlemap WHERE id = $q";
+  $sql1 = "DELETE FROM event WHERE id = $q";
+  mysqli_query($con,$sql2);
+  mysqli_query($con,$sql3);
+  mysqli_query($con,$sql1);
+
 }
 mysqli_query($con,$sql);
 

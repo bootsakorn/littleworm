@@ -71,7 +71,7 @@
       <h1><center>อัพโหลดหลักฐาน Pre Condition</center></h1>
       <div class="container" id="result">
         <p>อัพโหลดไม่สำเร็จ</p>
-        <a href="precon.php" class="btn btn-info" role="button">ย้อนกลับ</a>
+        <a href="index.php" class="btn btn-info" role="button">Back Home</a>
       </div>';
       $page->footer();
       exit();
@@ -81,7 +81,7 @@
       <h1><center>อัพโหลดหลักฐาน Pre Condition</center></h1>
       <div class="container" id="result">
         <p>อัพโหลดสำเร็จ</p>
-        <a href="precon.php" class="btn btn-info" role="button">ย้อนกลับ</a>
+        <a href="index.php" class="btn btn-info" role="button">Back Home</a>
       </div>';
     }
 
@@ -95,7 +95,7 @@
       $userName,
       $password);
 
-    $statement = $connection->prepare('INSERT INTO receipt VALUES (?, ?, ?)');
+    $statement = $connection->prepare('INSERT INTO precondition VALUES (?, ?, ?)');
     $param = array($_POST['event'], $upload_path, $_SESSION['email']);
 
     $statement->execute($param);

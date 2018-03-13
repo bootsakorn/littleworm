@@ -217,11 +217,11 @@
 
     function echoButton()
     {
-      echo '<form class=".form-horizontal" action="" method="post" id="usrform">
+      echo '<form class=".form-horizontal" action="index.php" method="post" id="usrform">
           <div class="form-group row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-              <input type="submit" value="Back" class="form-control btn btn-default" name="back">
+              <input type="submit" value="Back Home" class="form-control btn btn-default">
             </div>
             <div class="col-sm-4"></div>
           </div>

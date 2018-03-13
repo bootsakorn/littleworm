@@ -11,10 +11,10 @@
   $event_date_arr = array();
   $event_time_arr = array();
 
-  foreach ($connection->query('SELECT name, date, time FROM event WHERE organizer_name = (SELECT company_name FROM organizer WHERE email = ' .$email. ')') as $row) {
+  foreach ($connection->query('SELECT event.name, event.date_start, event.start_time FROM event WHERE event.organizer_email = "'.$email.'"') as $row) {
     $event_name_arr[$row_count] = $row['name'];
-    $event_date_arr[$row_count] = $row['date'];
-    $event_time_arr[$row_count] = $row['time'];
+    $event_date_arr[$row_count] = $row['date_start'];
+    $event_time_arr[$row_count] = $row['start_time'];
 
     $row_count ++;
   }
