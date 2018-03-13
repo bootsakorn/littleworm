@@ -81,7 +81,9 @@
 			    echo "Connection failed: " . $e->getMessage();
 			    }
 					try {
-		     		$sql = "UPDATE `event` SET `place`=$name WHERE id= $id";
+						echo "in". $name;
+						echo $id;
+		     		$sql = "UPDATE `event` SET `place`='$name' WHERE id= $id";
 					    $con->exec($sql);
 					    }catch(PDOException $e){
 					    echo "Connection failed: " . $e->getMessage();

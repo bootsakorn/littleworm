@@ -142,7 +142,7 @@
                $("#adm").show();
              </script>';
           } elseif ($_SESSION['position'] == 'USER') {
-             
+
              echo '<script>
              $("#username").html("'.$_SESSION["email"].'");
              $("#login").hide();
@@ -289,10 +289,41 @@
            }
            function clickedEvent(id) {
              console.log(id);
-             delHTTP.open("GET","delUserDB.php?q="+id+"&t=event",true);
-             delHTTP.send();
-             alert("Delete Event !")
+             Confirm('Delete Event', 'Are you sure you want to delete this Event', 'Yes', 'Cancel',id);
            }
+           function Confirm(title, msg, $true, $false,id) { /*change*/
+                   var $content =  "<div class='dialog-ovelay'>" +
+                                   "<div class='dialog'><header>" +
+                                    " <h3> " + title + " </h3> " +
+                                    "<i class='fa fa-close'></i>" +
+                                "</header>" +
+                                "<div class='dialog-msg'>" +
+                                    " <p> " + msg + " </p> " +
+                                "</div>" +
+                                "<footer>" +
+                                    "<div class='controls'>" +
+                                        " <button class='button button-danger doAction'>" + $true + "</button> " +
+                                        " <button class='button button-default cancelAction'>" + $false + "</button> " +
+                                    "</div>" +
+                                "</footer>" +
+                             "</div>" +
+                           "</div>";
+                    $('.tables').prepend($content);
+                 $('.doAction').click(function () {
+                   console.log("do action");
+                   $(this).parents('.dialog-ovelay').fadeOut(100, function () {
+
+                     delHTTP.open("GET","delUserDB.php?q="+id+"&t=event",true);
+                     delHTTP.send();
+                   });
+                 });
+           $('.cancelAction, .fa-close').click(function () {
+                   $(this).parents('.dialog-ovelay').fadeOut(100, function () {
+                     $(this).remove();
+                   });
+                 });
+
+              }
            delHTTP.onreadystatechange = function() {
              let q = $('#q')
              let r = $('#r')
